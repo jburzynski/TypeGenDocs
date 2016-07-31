@@ -32,29 +32,29 @@ Among the TypeGen's features are:
 Getting started
 ===============
 
-The easiest way to install TypeGen is `via NuGet <https://www.nuget.org/packages/TypeGen>`. After installation, both CLI and core functionality will be available.
+The easiest way to install TypeGen is `via NuGet <https://www.nuget.org/packages/TypeGen>`_. After installation, both CLI and core functionality will be available.
 
 Quick example
 =============
 
 Let's say you have a *ProductDto* class that you want to export to TypeScript. You first need to mark the class as exportable to TypeScript:
 
-.. code-block:: c#
+.. code-block:: csharp
 
-using TypeGen.Core.TypeAnnotations;
+	using TypeGen.Core.TypeAnnotations;
 
-[ExportTsClass]
-public class ProductDto
-{
-    public decimal Price { get; set; }
-    public string[] Tags { get; set; }
-}
+	[ExportTsClass]
+	public class ProductDto
+	{
+	    public decimal Price { get; set; }
+	    public string[] Tags { get; set; }
+	}
 
 After building your project, type into the Package Manager Console:
 
-.. code-block::
+.. code-block:: text
 
-TypeGen ProjectFolder
+	TypeGen ProjectFolder
 
 ...where *ProjectFolder* is your project folder, relative to your solution directory.
 
@@ -62,9 +62,9 @@ This will generate a single TypeScript file (named *product-dto.ts*) in your pro
 
 .. code-block:: typescript
 
-export class ProductDto {
-    price: number;
-    tags: string[];
-}
+	export class ProductDto {
+	    price: number;
+	    tags: string[];
+	}
 
-Of course, there are much more things you can do with TypeGen. To find out more, please click *next* or visit a relevant section.
+Of course, there is much more things you can do with TypeGen. To find out more, please click *next* or visit a relevant section.
