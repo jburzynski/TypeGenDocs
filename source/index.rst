@@ -9,7 +9,12 @@ Welcome to TypeGen's documentation!
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
+
+   overview
+   usingtypegen
+   cli
+   programmaticalusage
 
 
 
