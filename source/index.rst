@@ -15,6 +15,8 @@ Contents:
    usingtypegen
    cli
    programmaticalusage
+   cookbook
+   legal
 
 
 
