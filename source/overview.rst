@@ -19,7 +19,7 @@ TypeGen runs under .NET 3.5 or higher. No external dependencies are required.
 Features
 ============================
 
-TypeGen consists of two components: a core library (contains logic for file generation) and a Command Line Interface that utilizes the file generation logic. In most cases, the CLI should provide enough functionality to generate TypeScript sources as needed. In more complex cases, there is a possibility of using the Generator class directly from your C# code (the Generator class serves for - you guessed it - TypeScript file generation). For more information about using the CLI, please refer to the :doc:`Command Line Interface <cli>` section. More details on using file generation directly from the C# code can be found in the :doc:`Programmatical usage <programmaticalusage>` section.
+TypeGen consists of two components: a core library (contains logic for file generation) and a Command Line Interface that utilizes the file generation logic. In most cases, the CLI should provide enough functionality to generate TypeScript sources as needed. In more complex cases, there is a possibility of using the core library file generation logic directly from your C# code. For more information about using the CLI, please refer to the :doc:`Command Line Interface <cli>` section. More details on using file generation directly from the C# code can be found in the :doc:`Programmatical usage <programmaticalusage>` section.
 
 Among the TypeGen's features are:
 
@@ -28,6 +28,15 @@ Among the TypeGen's features are:
 * possibility of specifying an output path to generate a TypeScript file to (per class/enum)
 * automatic generation of properties' types (if a type is not natively available in TypeScript)
 * customizable convertion between C#/TypeScript names (naming conventions)
+
+How it works
+============
+
+The big picture is best illustrated by this diagram:
+
+.. image:: images/big-picture.png
+
+In short, TypeGen gets all C# classes/enums (annotated with appropriate attributes) from an assembly and generates corresponding TypeScript files for them in the file system. To find out more, please keep reading this documentation.
 
 Getting started
 ===============
