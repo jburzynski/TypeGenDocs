@@ -54,12 +54,12 @@ Let's say you're generating all C# classes as TypeScript interfaces (by annotati
 	    {
 	        if (type.IsClass)
 	        {
-	            return $"{name}.interface";
+	            return name + ".interface";
 	        }
 	        
 	        if (type.IsEnum)
 	        {
-	            return $"{name}.enum";
+	            return name + ".enum";
 	        }
 	        
 	        return name;
