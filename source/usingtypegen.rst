@@ -67,6 +67,30 @@ To ignore a property or field when generating TypeScript source, *TsIgnore* attr
 
 In this case, the generated TypeScript class will only contain *MyProperty* property declaration.
 
+TsTypeAttribute
+---------------
+
+There is a possibility to override the generated TypeScript type for a property or field. To do so, the *TsType* attribute can be used:
+
+.. code-block:: csharp
+
+	[ExportTsClass(OutputDir = "my/sources")]
+	public class MyClass
+	{
+	    public int MyProperty { get; set; }
+        
+	    [TsType(TsType.String)]
+	    public int StringProperty { get; set; }
+	    
+	    [TsType("CustomType")]
+	    public string CustomTypeProperty { get; set; }
+	}
+
+The attribute's constructor allows for 2 methods of specifying the TypeScript type:
+
+* explicitly - by typing the string value that will be used as a TypeScript type
+* by using the *TsType* enum - the *TsType* enum contains values representing all primitive TypeScript types (object, boolean, string and number)
+	
 What is generated?
 ==================
 
