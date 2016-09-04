@@ -90,6 +90,23 @@ The attribute's constructor allows for 2 methods of specifying the TypeScript ty
 
 * explicitly - by typing the string value that will be used as a TypeScript type
 * by using the *TsType* enum - the *TsType* enum contains values representing all primitive TypeScript types (object, boolean, string and number)
+
+TsDefaultTypeOutputAttribute
+----------------------------
+
+Since TypeGen 1.2, there is an option to specify a default output path for a member's type, which will be used if no *ExportTs...* attribute is present for this type.
+The path is relative to the project's folder (when using CLI) or generator's base directory (when generating programmatically).
+
+.. code-block:: csharp
+
+	[ExportTsClass(OutputDir = "my/sources")]
+	public class MyClass
+	{
+	    [TsDefaultTypeOutput("custom/output/path")]
+	    public CustomType CustomTypeProperty { get; set; }
+	}
+
+In this example, type *CustomType* will be generated in *custom/output/path* directory if no *ExportTs...* attribute is specified in *CustomType* definition.
 	
 What is generated?
 ==================
@@ -243,6 +260,85 @@ All collection or nested collection types will be exported by TypeGen. E.g., for
 	    intEnumerable: number[];
 	    intEnumArrayCombo: int[][];
 	    intEnumListArrayCombo: int[][][];
+	}
+
+Base classes
+------------
+
+Since TypeGen 1.2, base classes are automatically generated for both TypeScript classes and interfaces.
+
+.. code-block:: csharp
+
+	[ExportTsClass]
+	public class MyClass : BaseClass
+	{
+	    public string MyProperty { get; set; }
+	}
+	
+	public class BaseClass
+	{
+	    public int BaseField;
+	}
+
+For this code, two TypeScript files will be generated: one for *MyClass* and one for *BaseClass*:
+
+.. code-block:: typescript
+
+	export class MyClass extends BaseClass
+	{
+	    myProperty: string;
+	}
+	
+	export class BaseClass
+	{
+	    baseField: number;
+	}
+
+Generic classes
+---------------
+
+TypeGen 1.2 introduces TypeScript files generation for custom generic classes.
+Generic types/parameters are allowed in all parts of C# class definition: in class declaration, base class specification and as member types.
+Additionally, generic type constraint (specified in *where*) will also be exported to TypeScript (**note**: *new()* and *class* specifiers will not be exported).
+
+Example:
+
+.. code-block:: csharp
+
+	[ExportTsClass]
+	public class MyClass<T, U> : BaseClass<T> where T: GenericClass<string>
+	{
+	    public T GenericProperty1 { get; set; }
+	    public U GenericProperty2 { get; set; }
+	    public GenericClass<int> GenericClassProperty { get; set; }
+	}
+	
+	public class BaseClass<T>
+	{
+	    public T BaseProperty { get; set; }
+	}
+	
+	public class GenericClass<T>
+	{
+	    public T GenericClassField;
+	}
+	
+From this code, the following TypeScript sources will be generated:
+
+.. code-block:: typescript
+
+	export class MyClass<T extends GenericClass<string>, U> extends BaseClass<T> {
+	    genericProperty1: T;
+	    genericProperty2: U;
+	    genericClassProperty: GenericClass<number>;
+	}
+	
+	export class BaseClass<T> {
+	    baseProperty: T;
+	}
+	
+	export class GenericClass<T> {
+	    genericClassField: T;
 	}
 
 Converters
