@@ -35,7 +35,7 @@ After running the *TypeGen* command, the following actions are performed:
 Configuration file
 ==================
 
-TypeGen CLI uses a JSON configuration file to read the file generation options. By default, the configuration file is read from the *tgconfig.json* file present in the specified project folder. If *tsconfig.json* does not exist, default options are used. Configuration file path can also be specified by using the *-Config-Path* CLI option. For configuration parameters not present in the configuration file, default values will be used.
+TypeGen CLI uses a JSON configuration file to read the file generation options. By default, the configuration file is read from the *tgconfig.json* file present in the specified project folder. If *tgconfig.json* does not exist, default options are used. Configuration file path can also be specified by using the *-Config-Path* CLI option. For configuration parameters not present in the configuration file, default values will be used.
 
 The table below shows all available config parameters, with their default values and a description:
 
