@@ -89,7 +89,30 @@ There is a possibility to override the generated TypeScript type for a property 
 The attribute's constructor allows for 2 methods of specifying the TypeScript type:
 
 * explicitly - by typing the string value that will be used as a TypeScript type
-* by using the *TsType* enum - the *TsType* enum contains values representing all primitive TypeScript types (object, boolean, string and number)
+* by using the *TsType* enum - the *TsType* enum contains values representing the built-in TypeScript types (object, boolean, string, number and Date)
+
+If the used type requires an *import* statement to be present, the import path can be specified as a second constructor argument. Additionally, if the type is used as an alias, the original type name can be specified as the third constructor argument.
+
+Example:
+
+.. code-block:: csharp
+
+	[ExportTsClass(OutputDir = "my/sources")]
+	public class MyClass
+	{
+	    [TsType("CT", "../some/path/custom-type", "CustomType")]
+	    public string CustomTypeProperty { get; set; }
+	}
+	
+This will result in the following being generated:
+
+.. code-block:: typescript
+
+	import { CustomType as CT } from "../some/path/custom-type";
+	
+	export class MyClass {
+	    CustomTypeProperty: CT;
+	}
 
 TsDefaultTypeOutputAttribute
 ----------------------------
@@ -107,11 +130,23 @@ The path is relative to the project's folder (when using CLI) or generator's bas
 	}
 
 In this example, type *CustomType* will be generated in *custom/output/path* directory if no *ExportTs...* attribute is specified in *CustomType* definition.
+
+TsMemberNameAttribute
+---------------------
+
+The TsMemberName attribute allows to override the generated TypeScript property name.
+
+.. code-block:: csharp
+
+	[ExportTsClass(OutputDir = "my/sources")]
+	public class MyClass
+	{
+	    [TsMemberName("customProperty")] // will generate as customProperty: string;
+	    public string MyProperty { get; set; }
+	}
 	
 What is generated?
 ==================
-
-TypeGen supports generating:
 
 C# properties and fields
 ------------------------
@@ -140,15 +175,20 @@ The following class:
 	    myProperty2: string;
 	}
 
-Primitive property/field types
+Native property/field types
 ------------------------------
 
-All property/field types that can be represented by TypeScript primitive types will be automatically mapped to the corresponding TypeScript native types. The mapping of C# to TypeScript files is presented below:
+Property/field types that can be represented by TypeScript built-in types will be automatically mapped to the corresponding TypeScript types. The mapping of C# to TypeScript files is presented below:
 
+* *dynamic* -> *any*
 * *int, long, float, double, decimal* -> *number*
 * *string* -> *string*
 * *bool* -> *boolean*
 * *object* -> *object*
+* *DateTime* -> *Date*
+
+Additionally, any type that implements the *IDictionary* interface (or the *IDictionary* interface itself) will be mapped to TypeScript dictionary type.
+For example, *Dictionary<int, string>* will be mapped to *{ [key: number]: string; }*.
 
 Complex property/field types
 ----------------------------
@@ -340,6 +380,59 @@ From this code, the following TypeScript sources will be generated:
 	export class GenericClass<T> {
 	    genericClassField: T;
 	}
+
+Additional features
+===================
+
+Preserving parts of a TypeScript file
+-------------------------------------
+
+Since TypeGen 1.3, there is a possibility of preserving parts of a TypeScript file, so that they won't be overridden when regenerating the file.
+This can be achieved with the *<keep-ts>* tag specified in the comments, as shown below:
+
+.. code-block:: typescript
+
+	export class Product {
+	    netPrice: number;
+	    vat: number;
+	    
+	    //<keep-ts>
+	    get price(): number {
+	        return this.netPrice + this.vat;
+	    }
+	    //</keep-ts>
+	}
+
+This will keep the *price* property intact upon file regeneration.
+
+Multiple code fragments can be tagged with *<keep-ts>* as well (all blocks are merged into one upon file generation):
+
+.. code-block:: typescript
+
+	export class Product {
+	    netPrice: number;
+	    vat: number;
+	    
+	    //<keep-ts>
+	    get price(): number {
+	        return this.netPrice + this.vat;
+	    }
+	    //</keep-ts>
+	    
+	    //<keep-ts>
+	    get priceSpecified(): boolean {
+	        return this.netPrice !== undefined;
+	    }
+	    //</keep-ts>
+	}
+
+**Note:** :code:`//<keep-ts>` (followed by a new line) is the only acceptable format of the tag. The following will not work:
+
+* :code:`// <keep-ts>`
+* :code:`//<keep-ts >`
+* :code:`//<keep-ts> some comments after this`
+
+The *<keep-ts>* tag is case-insensitive, so e.g. :code:`<KEEP-TS>` is also acceptable.
 
 Converters
 ==========

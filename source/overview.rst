@@ -14,7 +14,7 @@ The main goal of TypeGen is therefore to allow for single-class-per-file generat
 Requirements
 ============
 
-TypeGen runs under .NET 3.5 or higher. No external dependencies are required.
+TypeGen runs under .NET 4.0 or higher. No external dependencies are required.
 
 Features
 ========
