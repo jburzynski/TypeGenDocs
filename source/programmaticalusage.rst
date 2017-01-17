@@ -29,12 +29,13 @@ The *Generator* class also has 1 public property named *Options*, which holds th
 The *GeneratorOptions* class has the following properties (generation options):
 
 * **FileNameConverters** : *TypeNameConverterCollection* - a collection (chain) of converters used for converting C# file names to TypeScript file names. Default is PascalCase to kebab-case.
-* **TypeNameConverters** : *TypeNameConverterCollection* - a collection (chain) of converters used for converting C# type names (classes, enums etc.) to TypeScript type names. Default is NoChangeConverter (preserves original type name).
+* **TypeNameConverters** : *TypeNameConverterCollection* - a collection (chain) of converters used for converting C# type names (classes, enums etc.) to TypeScript type names. Default is empty (preserves original type name).
 * **PropertyNameConverters** : *NameConverterCollection* - a collection (chain) of converters used for converting C# class property names to TypeScript class property names. Default is PascalCase to camelCase.
-* **EnumValueNameConverters** : *NameConverterCollection* - a collection (chain) of converters used for converting C# enum value names to TypeScript enum value names. Default is NoChangeConverter (preserves original name).
-* **ExplicitPublicAccessor** : *bool* - whether to generate explicit "public" accessor in TypeScript classes. Default is "false".
+* **EnumValueNameConverters** : *NameConverterCollection* - a collection (chain) of converters used for converting C# enum value names to TypeScript enum value names. Default is empty (preserves original name).
+* **ExplicitPublicAccessor** : *bool* - whether to generate explicit "public" accessor in TypeScript classes. Default is *false*.
 * **TypeScriptFileExtension** : *string* - file extension used for the generated TypeScript files. Default is "ts".
 * **TabLength** : *int* - number of space characters per tab. Default is 4.
+* **SingleQuotes** : *bool* - whether to use single quotes for string literals in generated TypeScript files. Default is *false*.
 * **BaseOutputDirectory** : *string* - the base directory for generating TypeScript files. Any relative paths defined in the *ExportTs...* attributes (as *OutputDir*) will be resolved relatively to this path.
 
 Example

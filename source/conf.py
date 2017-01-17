@@ -49,7 +49,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'TypeGen'
-copyright = u'2016, Jacek Burzynski'
+copyright = u'Jacek Burzynski'
 author = u'Jacek Burzynski'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -57,7 +57,7 @@ author = u'Jacek Burzynski'
 # built documents.
 #
 # The short X.Y version.
-version = u'1.2.0'
+version = u'1.4.1'
 # The full version, including alpha/beta/rc tags.
 release = version
 

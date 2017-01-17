@@ -89,7 +89,7 @@ There is a possibility to override the generated TypeScript type for a property 
 The attribute's constructor allows for 2 methods of specifying the TypeScript type:
 
 * explicitly - by typing the string value that will be used as a TypeScript type
-* by using the *TsType* enum - the *TsType* enum contains values representing the built-in TypeScript types (object, boolean, string, number and Date)
+* by using the *TsType* enum - the *TsType* enum contains values representing the built-in TypeScript types (object, boolean, string, number, Date and any)
 
 If the used type requires an *import* statement to be present, the import path can be specified as a second constructor argument. Additionally, if the type is used as an alias, the original type name can be specified as the third constructor argument.
 
@@ -388,24 +388,28 @@ Preserving parts of a TypeScript file
 -------------------------------------
 
 Since TypeGen 1.3, there is a possibility of preserving parts of a TypeScript file, so that they won't be overridden when regenerating the file.
-This can be achieved with the *<keep-ts>* tag specified in the comments, as shown below:
+This can be achieved with *<custom-head>* and *<custom-body>* tags specified in the comments, as shown below:
 
 .. code-block:: typescript
+
+	//<custom-head>
+	import { Foo } from "../bar";
+	//</custom-head>
 
 	export class Product {
 	    netPrice: number;
 	    vat: number;
 	    
-	    //<keep-ts>
+	    //<custom-body>
 	    get price(): number {
 	        return this.netPrice + this.vat;
 	    }
-	    //</keep-ts>
+	    //</custom-body>
 	}
 
-This will keep the *price* property intact upon file regeneration.
+This will keep both the extra import and the *price* property intact upon file regeneration.
 
-Multiple code fragments can be tagged with *<keep-ts>* as well (all blocks are merged into one upon file generation):
+Multiple code fragments can be tagged with *<custom-head>* or *<custom-body>* as well (however, multiple blocks are merged into one upon file generation):
 
 .. code-block:: typescript
 
@@ -413,26 +417,30 @@ Multiple code fragments can be tagged with *<keep-ts>* as well (all blocks are m
 	    netPrice: number;
 	    vat: number;
 	    
-	    //<keep-ts>
+	    //<custom-body>
 	    get price(): number {
 	        return this.netPrice + this.vat;
 	    }
-	    //</keep-ts>
+	    //</custom-body>
 	    
-	    //<keep-ts>
+	    //<custom-body>
 	    get priceSpecified(): boolean {
 	        return this.netPrice !== undefined;
 	    }
-	    //</keep-ts>
+	    //</custom-body>
 	}
 
-**Note:** :code:`//<keep-ts>` (followed by a new line) is the only acceptable format of the tag. The following will not work:
+**Note:** :code:`//<custom-xyz>` (followed by a new line) is the only acceptable format of a tag. The following will not work:
 
-* :code:`// <keep-ts>`
-* :code:`//<keep-ts >`
-* :code:`//<keep-ts> some comments after this`
+* :code:`// <custom-xyz>`
+* :code:`//<custom-xyz >`
+* :code:`//<custom-xyz> some comments after this`
 
-The *<keep-ts>* tag is case-insensitive, so e.g. :code:`<KEEP-TS>` is also acceptable.
+*<custom-head>* and *<custom-body>* tags are case-insensitive, so e.g. :code:`<CUSTOM-HEAD>` is also acceptable.
+
+**Deprecation note:**
+
+*<custom-head>* and *<custom-body>* tags are available since TypeGen 1.4.0. Prior to this version, the *<keep-ts>* tag was used for preserving parts of the type's definition. The *<keep-ts>* tag will still work in versions higher than 1.3.0 (unless decided otherwise), however its use is deprecated since version 1.4.0.
 
 Converters
 ==========
@@ -443,7 +451,6 @@ A Converter is a class that defines logic for switching from one naming conventi
 
 All converters available out-of-the-box in TypeGen are both *name converters* and *type name converters* (implement both interfaces). The natively available converters are:
 
-* *NoChangeConverter* - the default converter, has a special use in TypeGen - it's always used at the beginning of the converter chain (the converter chain will be described later). Shouldn't be used outside TypeGen.Core.
 * *PascalCaseToCamelCaseConverter* - converts PascalCase names to camelCase names
 * *PascalCaseToKebabCaseConverter* - converts PascalCase names to kebab-case names
 * *UnderscoreCaseToCamelCaseConverter* - converts underscore_case (or UNDERSCORE_CASE) names to camelCase names
