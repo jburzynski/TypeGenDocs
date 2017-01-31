@@ -11,6 +11,7 @@ The TypeGen Command Line Interface (CLI) can be used from the Package Manager Co
 .. container:: Note
 
     **Note: This issue has been resolved in Visual Studio 2017 RC**
+	
     There is a known issue with using TypeGen from Package Manager Console with ASP.NET Core projects, **under Visual Studio 2015**: Package Manager Console doesn't see the TypeGen executable. If this happens to you, you can copy the TypeGen executable from the *packages* folder to your solution directory and use it from PowerShell or CMD.
 
 **Arguments/options**
