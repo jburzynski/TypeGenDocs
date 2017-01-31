@@ -10,7 +10,8 @@ The TypeGen Command Line Interface (CLI) can be used from the Package Manager Co
 	
 .. container:: Note
 
-    There is a known issue with using TypeGen from Package Manager Console with ASP.NET Core projects (Package Manager Console doesn't see the TypeGen executable). If this happens to you, you can copy the TypeGen executable from the *packages* folder to your solution directory and use it from PowerShell or CMD.
+	**Note: This issue has been resolved in Visual Studio 2017 RC**
+    There is a known issue with using TypeGen from Package Manager Console with ASP.NET Core projects, **under Visual Studio 2015**: Package Manager Console doesn't see the TypeGen executable. If this happens to you, you can copy the TypeGen executable from the *packages* folder to your solution directory and use it from PowerShell or CMD.
 
 **Arguments/options**
 
@@ -54,6 +55,8 @@ propertyNameConverters (*)   ["PascalCaseToCamelCase"]       Converter chain use
 
 enumValueNameConverters (*)  []                              Converter chain used for converting C# enum value names to TypeScript enum value names
 
+externalAssemblyPaths        []                              An array of paths to external assemblies. These paths are searched (recursively) for any assembly references that cannot be automatically resolved.
+
 typeScriptFileExtension      "ts"                            File extension for the generated TypeScript files
 
 tabLength                    4                               The number of spaces per tab in the generated TypeScript files
@@ -62,7 +65,7 @@ explicitPublicAccessor       false                           Whether to use expl
 
 singleQuotes                 false                           Whether to use single quotes for string literals in the generated TypeScript files
 
-addFilesToProject            false                           Whether to add the generated TypeScript files to the project file (*.csproj)
+addFilesToProject            false                           **Only for .NET Framework apps (not .NET Core)**. Whether to add the generated TypeScript files to the project file (*.csproj)
 ============================ =============================== ===================
 
 (*) Converter chain is an array of converter class names. The rules for specifying converter chains are as follows:

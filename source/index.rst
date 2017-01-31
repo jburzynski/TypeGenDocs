@@ -23,6 +23,7 @@ Contents:
    cli
    programmaticalusage
    cookbook
+   troubleshooting
    legal
 
 

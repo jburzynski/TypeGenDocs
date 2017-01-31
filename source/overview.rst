@@ -14,7 +14,14 @@ The main goal of TypeGen is therefore to allow for single-class-per-file generat
 Requirements
 ============
 
-TypeGen runs under .NET 4.0 or higher. No external dependencies are required.
+**Versions >= 1.5.0**
+
+* CLI: .NET Framework 4.6
+* TypeGen.Core: .NET Standard 1.3
+
+**Versions < 1.5.0**
+
+.NET Framework 4.0
 
 Features
 ========
