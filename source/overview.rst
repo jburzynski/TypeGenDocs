@@ -17,7 +17,7 @@ Requirements
 **Versions >= 1.5.0**
 
 * CLI: .NET Framework 4.6
-* TypeGen.Core: .NET Standard 1.3
+* TypeGen.Core: .NET Standard 1.3 (see `compatibility table <https://docs.microsoft.com/en-us/dotnet/articles/standard/library>`_)
 
 **Versions < 1.5.0**
 
