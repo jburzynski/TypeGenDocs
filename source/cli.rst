@@ -30,7 +30,7 @@ Get-Cwd                   A utility option. If present, the current working dire
 
 After running the *TypeGen* command, the following set of actions is performed for each of the specified project folders:
 
-#. The CLI reads the assembly file (.dll or .exe). By default, the assembly file is read from the project folder's *bin/Debug* or *bin* directories (if no assembly path is specified in the config). The name of the assembly must match the name of the .csproj file present in the project folder.
+#. The CLI reads the assembly file (.dll or .exe). By default (if no assembly path is specified in the config), the assembly file is searched recursively in the project folder's *bin* directory. The name of the assembly must match the name of the .csproj or .xproj file present in the project folder.
 
 #. Each type in the assembly is checked for the existence of a *ExportTs...* attribute. If an attribute is present for the type, a TypeScript file will be generated.
 
@@ -67,6 +67,8 @@ explicitPublicAccessor       false                           Whether to use expl
 singleQuotes                 false                           Whether to use single quotes for string literals in the generated TypeScript files
 
 addFilesToProject            false                           **Only for .NET Framework apps (not .NET Core)**. Whether to add the generated TypeScript files to the project file (*.csproj)
+
+outputPath                   null                            Output path for generated files, relative to the project folder.
 ============================ =============================== ===================
 
 (*) Converter chain is an array of converter class names. The rules for specifying converter chains are as follows:
