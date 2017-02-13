@@ -461,12 +461,12 @@ Converter collections
 
 Converter collections (or chains) are used in TypeGen to perform a conversion between naming conventions. There are 2 types of converter collections: *name converter collection* (for *name converters*) and *type name converter collection* (for *type name converters*). A converter collection defines a chain of converters that will be used to convert names.
 
-For example, a converter collection containing two converters (in this order): *UnderscoreCaseToPascalCaseConverter* and *PascalCaseToCamelCaseConverter*, will convert the name *"MY_CLASS"* in the following way:
+For example, a converter collection containing two converters (in this order): **UnderscoreCaseToPascalCaseConverter** and **StripDtoConverter** (which removes the "Dto" suffix), will convert the name **MY_CLASS_DTO** in the following way:
 
-#. First, *UnderscoreCaseToPascalCaseConverter* will convert *MY_CLASS* to *MyClass*
-#. Then, the second converter (*PascalCaseToCamelCaseConverter*) will be used to convert *MyClass* to *myClass*
+#. First, **UnderscoreCaseToPascalCaseConverter** will convert **MY_CLASS_DTO** to **MyClassDto**
+#. Then, the second converter (**StripDtoConverter**) will be used to convert **MyClassDto** to **MyClass**
 
-Therefore, this particular converter collection will convert a name *MY_CLASS* to *myClass*.
+Therefore, this particular converter collection will convert a name **MY_CLASS_DTO** to **MyClass**.
 
 Using converters
 ----------------
