@@ -48,7 +48,7 @@ In short, TypeGen gets all C# classes/enums (annotated with appropriate attribut
 Getting started
 ===============
 
-The easiest way to install TypeGen is `via NuGet <https://www.nuget.org/packages/TypeGen>`_. After installation, both CLI and core functionality will be available.
+The easiest way to install TypeGen is `via NuGet <https://www.nuget.org/packages/TypeGen>`_. After installation, both CLI and programmatical API will be available.
 
 Quick example
 =============
