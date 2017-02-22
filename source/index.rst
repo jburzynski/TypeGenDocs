@@ -22,6 +22,7 @@ Contents:
    usingtypegen
    cli
    programmaticalusage
+   API Reference <http://jburzynski.net/TypeGen/api-reference>
    cookbook
    troubleshooting
    legal
