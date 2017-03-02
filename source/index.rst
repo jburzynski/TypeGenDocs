@@ -10,7 +10,8 @@ TypeGen is a C# to TypeScript file generator, supporting single-class-per-file g
 
 Use:
 
-* Download from `NuGet <https://www.nuget.org/packages/TypeGen>`_ or the PM console: *PM> Install-Package TypeGen*
+* Download from `NuGet <https://www.nuget.org/packages/TypeGen>`_
+* Download from `Chocolatey <https://chocolatey.org/packages/TypeGen>`_ (CLI only)
 * Browse the `source code <https://github.com/jburzynski/TypeGen>`_
 
 Contents:
