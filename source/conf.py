@@ -57,7 +57,7 @@ author = u'Jacek Burzynski'
 # built documents.
 #
 # The short X.Y version.
-version = u'1.5.5'
+version = u'1.5.6'
 # The full version, including alpha/beta/rc tags.
 release = version
 
