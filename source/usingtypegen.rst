@@ -181,8 +181,8 @@ Native property/field types
 Property/field types that can be represented by TypeScript built-in types will be automatically mapped to the corresponding TypeScript types. The mapping of C# to TypeScript files is presented below:
 
 * *dynamic* -> *any*
-* *int, long, float, double, decimal* -> *number*
-* *string* -> *string*
+* *all C# built-in numeric and byte types* -> *number*
+* *string, char* -> *string*
 * *bool* -> *boolean*
 * *object* -> *object*
 * *DateTime* -> *Date*
