@@ -14,12 +14,19 @@ The main goal of TypeGen is therefore to allow for single-class-per-file generat
 Requirements
 ============
 
-**Versions >= 1.5.0**
+For .NET Standard compatibility, see `compatibility table <https://docs.microsoft.com/en-us/dotnet/articles/standard/library>`_.
+
+**Versions >= 1.5.7**
+
+* CLI: .NET Core 2.0
+* TypeGen.Core: .NET Standard versions: 1.3 and 2.0
+
+**Versions 1.5.0 - 1.5.6**
 
 * CLI: .NET Framework 4.6
-* TypeGen.Core: .NET Standard 1.3 (see `compatibility table <https://docs.microsoft.com/en-us/dotnet/articles/standard/library>`_)
+* TypeGen.Core: .NET Standard 1.3
 
-**Versions < 1.5.0**
+**Versions <= 1.4.x**
 
 .NET Framework 4.0
 
