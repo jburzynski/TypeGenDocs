@@ -83,6 +83,11 @@ outputPath                   null                            Output path for gen
 
 For more information on converters, please refer to the :doc:`Using TypeGen <usingtypegen>` section.
 
+Directory aliases
+-----------------
+
+You can use directory aliases in paths specified in any of the configuration parameters. Aliases get replaced with appropriate paths upon file generation. As of now, only one alias is available: **<global-packages>**. This alias points to your global NuGet packages folder.
+
 Example
 -------
 
