@@ -548,7 +548,7 @@ You can also specify how C# nullable property types will be translated to TypeSc
 * null | undefined
 * *not null and not undefined*
 
-To override the default C# nullable types translation, you can use the following attributes on a property or field: *TsNull*, *TsNotNull*, *TsUndefined*, *TsNotUndefined*.
+To override the default C# nullable types translation, you can use the following attributes on a property or field: *TsNull*, *TsNotNull*, *TsUndefined*, *TsNotUndefined* (more on these attributes above, in the *TypeGen annotations* section).
 
 Converters
 ==========
