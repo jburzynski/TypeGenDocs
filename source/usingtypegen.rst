@@ -538,7 +538,7 @@ Strict null checking mode
 
 TypeGen versions >= 1.6.0 support TypeScript2 strict null checking mode. To enable it, do the following:
 
-* in CLI: add *strictNullChecks* config parameter to *true*
+* in CLI: set *strictNullChecks* config parameter to *true*
 * programmatically: set generator options *StrictNullChecks* parameter to *true*
 
 You can also specify how C# nullable property types will be translated to TypeScript by default, by using the *csNullableTranslation* parameter (CLI or generator options). Available choices are:
