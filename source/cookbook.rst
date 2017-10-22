@@ -5,7 +5,7 @@ Cookbook
 Writing your own converter
 ===============================
 
-Universal converter
+Type name and name converter
 -------------------
 
 Let's say you want the generated TypeScript files' names to be *kebab-case*, but without the trailing *DTO*, as your C# classes have (let's say you have e.g. a C# class called *ProductDTO*).

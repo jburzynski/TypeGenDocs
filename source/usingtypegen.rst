@@ -111,7 +111,7 @@ This will result in the following being generated:
 	import { CustomType as CT } from "../some/path/custom-type";
 	
 	export class MyClass {
-	    CustomTypeProperty: CT;
+	    customTypeProperty: CT;
 	}
 
 TsDefaultTypeOutputAttribute
@@ -144,6 +144,97 @@ The TsMemberName attribute allows to override the generated TypeScript property 
 	    [TsMemberName("customProperty")] // will generate as customProperty: string;
 	    public string MyProperty { get; set; }
 	}
+	
+TsOptionalAttribute
+-------------------
+
+Marks an interface property as optional.
+
+.. code-block:: csharp
+
+	[ExportTsInterface]
+	public class MyInterface
+	{
+	    [TsOptional]
+	    public string MyProperty { get; set; }
+	}
+	
+translates to:
+
+.. code-block:: typescript
+
+	export interface MyInterface {
+	    myProperty?: string;
+	}
+	
+TsCustomBaseAttribute
+---------------------
+
+The TsCustomBaseAttribute allows for specifying a custom definition of the base type. Can be used on classes and interfaces. If no base class is specified, base class definition will be removed.
+
+.. code-block:: csharp
+
+	[ExportTsClass]
+	[TsCustomBase("CustomBase")]
+	public class MyClass : MyBase
+	{
+	    public string MyProperty { get; set; }
+	}
+	
+resulting TypeScript file:
+
+.. code-block:: typescript
+
+	export class MyClass extends CustomBase {
+	    myProperty: string;
+	}
+	
+TsIgnoreBaseAttribute
+---------------------
+
+TsIgnoreBaseAttribute causes the base class/interface definition to be empty **and** the base type to not be generated (unless the base type itself is marked with an *ExportTs...* attribute).
+
+.. code-block:: csharp
+
+	[ExportTsClass]
+	[TsIgnoreBase]
+	public class MyClass : MyBase
+	{
+	    public string MyProperty { get; set; }
+	}
+	
+generated TypeScript (MyBase is not generated if it doesn't have an *ExportTs...* attribute):
+
+.. code-block:: typescript
+
+	export class MyClass {
+	    myProperty: string;
+	}
+
+TsNull, TsNotNull, TsUndefined, TsNotUndefined attributes
+---------------------------------------------------------
+
+These attributes are used in strict null checking mode to indicate an opt-in/out *null* or *undefined* type union. Negative (*not*) attributes have precedence over positive attributes.
+E.g. this definition:
+
+.. code-block:: csharp
+
+	[ExportTsClass]
+	public class MyClass
+	{
+	    [TsNull]
+	    public string MyProperty { get; set; }
+	}
+	
+will be translated to:
+
+.. code-block:: typescript
+
+	export class MyClass {
+	    myProperty: string | null;
+	}
+	
+The above will work only if strict null checking mode is enabled (in CLI or programmatically in the generator options).
 	
 What is generated?
 ==================
@@ -379,7 +470,7 @@ From this code, the following TypeScript sources will be generated:
 	
 	export class GenericClass<T> {
 	    genericClassField: T;
-	}
+	}	
 
 Additional features
 ===================
@@ -441,6 +532,23 @@ Multiple code fragments can be tagged with *<custom-head>* or *<custom-body>* as
 **Deprecation note:**
 
 *<custom-head>* and *<custom-body>* tags are available since TypeGen 1.4.0. Prior to this version, the *<keep-ts>* tag was used for preserving parts of the type's definition. The *<keep-ts>* tag will still work in versions higher than 1.3.0 (unless decided otherwise), however its use is deprecated since version 1.4.0.
+
+Strict null checking mode
+-------------------------
+
+TypeGen versions >= 1.6.0 support TypeScript2 strict null checking mode. To enable it, do the following:
+
+* in CLI: add *strictNullChecks* config parameter to *true*
+* programmatically: set generator options *StrictNullChecks* parameter to *true*
+
+You can also specify how C# nullable property types will be translated to TypeScript by default, by using the *csNullableTranslation* parameter (CLI or generator options). Available choices are:
+
+* null
+* undefined
+* null | undefined
+* *not null and not undefined*
+
+To override the default C# nullable types translation, you can use the following attributes on a property or field: *TsNull*, *TsNotNull*, *TsUndefined*, *TsNotUndefined*.
 
 Converters
 ==========

@@ -6,7 +6,7 @@ The TypeGen Command Line Interface (CLI) can be used from the Package Manager Co
 
 .. code-block:: text
 
-	TypeGen ProjectFolder1[:ProjectFolder2:(...)] [-Config-Path \"path1[:path2:(...)]\"] [Get-Cwd] [-h | -Help] [-v | -Verbose]
+	TypeGen ProjectFolder1[|ProjectFolder2|(...)] [-Config-Path path1[|path2|(...)]] [Get-Cwd] [-h | -Help] [-v | -Verbose]
 	
 .. container:: Note
 
@@ -17,7 +17,7 @@ The TypeGen Command Line Interface (CLI) can be used from the Package Manager Co
 **Arguments/options**
 
 ========================  ======  
-ProjectFolderN            The path to project(s) that TypeScript sources will be generated for. Package Manager Console runs from the solution directory by default, so usually ProjectFolderN would be the name of the project (if the project directory has the same name as the project).
+ProjectFolderN            The path to project(s) that TypeScript sources will be generated for. Package Manager Console runs from the solution directory by default, so usually ProjectFolderN would be the name of the project.
 
 -Config-Path              Paths to config files for the specified projects (the order of config paths must match the order of projects). If a project doesn't have its config specified, *tgconfig.json* file from ProjectFolderN will be used. If *tgconfig.json* is not present, the default configuration will be used.
 
@@ -56,7 +56,7 @@ propertyNameConverters (*)   ["PascalCaseToCamelCase"]       Converter chain use
 
 enumValueNameConverters (*)  []                              Converter chain used for converting C# enum value names to TypeScript enum value names
 
-externalAssemblyPaths        []                              An array of paths to external assemblies. These paths are searched (recursively) for any assembly references that cannot be automatically resolved.
+externalAssemblyPaths        []                              An array of paths to external assemblies. These paths are searched (recursively) for any assembly references that cannot be automatically resolved. NuGet package folders (global + machine-wide and project fallback) are searched by default.
 
 typeScriptFileExtension      "ts"                            File extension for the generated TypeScript files
 
@@ -66,9 +66,13 @@ explicitPublicAccessor       false                           Whether to use expl
 
 singleQuotes                 false                           Whether to use single quotes for string literals in the generated TypeScript files
 
-addFilesToProject            false                           **Only for .NET Framework apps (not .NET Core)**. Whether to add the generated TypeScript files to the project file (*.csproj)
+addFilesToProject            false                           **Only for .NET Framework apps (not .NET Core)**. Whether to add the generated TypeScript files to the project file (\*.csproj)
 
 outputPath                   null                            Output path for generated files, relative to the project folder.
+
+strictNullChecks             false                           Whether to enable TypeScript2 strict null checking mode functionality.
+
+csNullableTranslation        ""                              **Only for strict null checking**. Determines how C# nullable property types will be translated to TypeScript by default. Possible values: "null", "undefined", "null|undefined" or "".
 ============================ =============================== ===================
 
 (*) Converter chain is an array of converter class names. The rules for specifying converter chains are as follows:
@@ -82,11 +86,6 @@ outputPath                   null                            Output path for gen
 * To read a converter class from a specific assembly, converter path can be defined in the following format: *assembly/path/assembly.dll:ConverterClass*, where assembly path is relative to the project's folder.
 
 For more information on converters, please refer to the :doc:`Using TypeGen <usingtypegen>` section.
-
-Directory aliases
------------------
-
-You can use directory aliases in paths specified in any of the configuration parameters. Aliases get replaced with appropriate paths upon file generation. As of now, only one alias is available: **<global-packages>**. This alias points to your global NuGet packages folder.
 
 Example
 -------
