@@ -68,7 +68,7 @@ singleQuotes                 false                           Whether to use sing
 
 addFilesToProject            false                           **Only for .NET Framework apps (not .NET Core)**. Whether to add the generated TypeScript files to the project file (\*.csproj)
 
-outputPath                   null                            Output path for generated files, relative to the project folder.
+outputPath                   ""                              Output path for generated files, relative to the project folder.
 
 strictNullChecks             false                           Whether to enable TypeScript2 strict null checking mode functionality.
 
