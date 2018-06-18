@@ -23,6 +23,7 @@ Contents:
    overview
    usingtypegen
    cli
+   dotnetcli
    programmaticalusage
    API Reference <http://jburzynski.net/TypeGen/api-reference>
    cookbook
