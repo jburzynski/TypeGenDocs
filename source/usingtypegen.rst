@@ -170,7 +170,7 @@ translates to:
 TsCustomBaseAttribute
 ---------------------
 
-The TsCustomBaseAttribute allows for specifying a custom definition of the base type. Can be used on classes and interfaces. If no base class is specified, base class definition will be removed.
+The TsCustomBaseAttribute allows for specifying a custom declaration of the base type. Can be used on classes and interfaces. If no base class is specified, base class declaration will be removed.
 
 .. code-block:: csharp
 
@@ -192,7 +192,7 @@ resulting TypeScript file:
 TsIgnoreBaseAttribute
 ---------------------
 
-TsIgnoreBaseAttribute causes the base class/interface definition to be empty **and** the base type to not be generated (unless the base type itself is marked with an *ExportTs...* attribute).
+TsIgnoreBaseAttribute causes the base class/interface declaration to be empty **and** the base type to not be generated (unless the base type itself is marked with an *ExportTs...* attribute).
 
 .. code-block:: csharp
 
