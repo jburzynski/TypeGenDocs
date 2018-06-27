@@ -189,6 +189,29 @@ resulting TypeScript file:
 	    myProperty: string;
 	}
 	
+If the used base type requires an *import* statement to be present, the import path can be specified as a second constructor argument. Additionally, if the type is used as an alias, the original type name can be specified as the third constructor argument.
+
+Example:
+
+.. code-block:: csharp
+
+	[ExportTsClass(OutputDir = "my/sources")]
+	[TsCustomBase("CustomBase", "../some/path/custom-base")]
+	public class MyClass
+	{
+	    // ...
+	}
+	
+This will result in the following being generated:
+
+.. code-block:: typescript
+
+	import { CustomBase } from "../some/path/custom-base";
+	
+	export class MyClass extends CustomBase {
+	    // ...
+	}
+	
 TsIgnoreBaseAttribute
 ---------------------
 
