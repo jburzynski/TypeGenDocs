@@ -19,5 +19,7 @@ TypeGen .NET Command Line tool can be obtained by downloading the `NuGet package
 	getcwd       Get current working directory
 
 Functionality of TypeGen .NET Command Line tool is identical to :doc:`TypeGen CLI <cli>` with two differences:
+
 * syntax difference
+
 * project folder(s) parameter can be omitted, in which case current directory (i.e. current project) will be used for file generation
