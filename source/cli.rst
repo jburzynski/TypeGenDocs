@@ -70,6 +70,8 @@ addFilesToProject            false                           **Only for .NET Fra
 
 outputPath                   ""                              Output path for generated files, relative to the project folder.
 
+createIndexFile              false                           Whether to generate an index (barrel) file in the root TypeScript output directory. Index exports everything from all generated TypeScript files.
+
 strictNullChecks             false                           Whether to enable TypeScript2 strict null checking mode functionality.
 
 csNullableTranslation        ""                              **Only for strict null checking**. Determines how C# nullable property types will be translated to TypeScript by default. Possible values: "null", "undefined", "null|undefined" or "".
