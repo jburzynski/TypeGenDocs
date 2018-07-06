@@ -25,7 +25,7 @@ Contents:
    cli
    dotnetcli
    programmaticalusage
-   API Reference <http://jburzynski.net/TypeGen/api-reference>
+   API Reference <http://jburzynski.net/TypeGen/api-reference/api>
    cookbook
    troubleshooting
    legal
