@@ -6,7 +6,7 @@
 Welcome to TypeGen's documentation!
 ===================================
 
-TypeGen is a C# to TypeScript code generator for generating DTO-like classes, single-class-per-file.
+TypeGen is a single-class-per-file C# to TypeScript generator.
 
 Use:
 
