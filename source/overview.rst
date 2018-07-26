@@ -50,7 +50,7 @@ The big picture is best illustrated by this diagram:
 
 .. image:: images/big-picture.png
 
-In short, TypeGen gets all C# classes/enums (annotated with appropriate attributes) from an assembly and generates corresponding TypeScript files for them in the file system. To find out more, please keep reading this documentation.
+In short, TypeGen gets all C# classes/enums (annotated with appropriate attributes) from an assembly and generates corresponding TypeScript files for them in the file system.
 
 Getting started
 ===============
