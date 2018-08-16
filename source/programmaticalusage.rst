@@ -9,17 +9,13 @@ The Generator class
 
 After installing TypeGen as a `NuGet package <https://www.nuget.org/packages/TypeGen>`_, you'll have access to the *Generator* (*TypeGen.Core.Generator*) class, which is responsible for generating TypeScript files. This class is also used by :doc:`TypeGen CLI <cli>` for this purpose.
 
-The class itself has 1 public method *Generate*, in 2 versions:
+The class itself has 1 public method *Generate*, in 3 versions:
 
+* *Generate(IEnumerable<Assembly> assemblies)*
 * *Generate(Assembly assembly)*
 * *Generate(Type type)*
 
-The first version serves for generating files for all annotated types in an assembly (this is the overload used by the CLI). The second one is used for generating TypeScript file(s) for a specific C# type. The generated files are immediately saved to the file system.
-
-Unit testing
-============
-
-It's possible to mock the *Generator* class when performing unit tests. The class implements an interface *IGenerator*, which can be used for creating the *Generator* class mocks.
+The first two versions serve for generating files for all annotated types in an assembly/assemblies (these overloads are used by the CLI). The last one is used for generating TypeScript file(s) for a specific C# type. The generated files are immediately saved to the file system.
 
 Generator options
 =================
@@ -37,6 +33,9 @@ The *GeneratorOptions* class has the following properties (generation options):
 * **TabLength** : *int* - number of space characters per tab. Default is 4.
 * **SingleQuotes** : *bool* - whether to use single quotes for string literals in generated TypeScript files. Default is *false*.
 * **BaseOutputDirectory** : *string* - the base directory for generating TypeScript files. Any relative paths defined in the *ExportTs...* attributes (as *OutputDir*) will be resolved relatively to this path.
+* **CreateIndexFile** : *bool* - whether to create a global index file.
+* **StrictNullChecks** : *bool* - whether to enable TypeScript strict null checking mode.
+* **CsNullableTranslation** : *string* - **Only for strict null checking**. Determines how C# nullable property types will be translated to TypeScript by default.
 
 Example
 =======
