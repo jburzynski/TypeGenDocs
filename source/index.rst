@@ -12,7 +12,6 @@ Use:
 
 * Download from `NuGet <https://www.nuget.org/packages/TypeGen>`_
 * Use with DotNet CLI (`NuGet package <https://www.nuget.org/packages/TypeGen.DotNetCli>`_)
-* Download from `Chocolatey <https://chocolatey.org/packages/TypeGen>`_
 * Browse the `source code <https://github.com/jburzynski/TypeGen>`_
 
 Contents:
