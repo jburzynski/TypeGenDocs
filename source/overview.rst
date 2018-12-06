@@ -16,7 +16,7 @@ Requirements
 
 For .NET Standard compatibility, see `compatibility table <https://docs.microsoft.com/en-us/dotnet/articles/standard/library>`_.
 
-**Versions >= 2.0.0
+**Versions >= 2.0.0**
 
 * CLI: .NET Core 2.1
 * TypeGen.Core: .NET Standard versions: 1.3 and 2.0
@@ -62,7 +62,7 @@ In short, TypeGen gets all C# classes/enums (annotated with appropriate attribut
 Getting started
 ===============
 
-To use TypeGen in your code or from the PM console, install the `NuGet package <https://www.nuget.org/packages/TypeGen>`_. After installation, both CLI and programmatical API will be available. Additionally, you may add `TypeGen for DotNet CLI <https://nuget.org/packages/TypeGen.DotNetCli>`_ to your project, or install TypeGen for DotNetCli as a global tool.
+To use TypeGen in your code or from the Package Manager Console, install the `NuGet package <https://www.nuget.org/packages/TypeGen>`_. After installation, both CLI and programmatical API will be available. Alternatively, you may also use TypeGen as a `.NET CLI global tool <https://nuget.org/packages/TypeGen.DotNetCli>`_.
 
 Quick example
 =============
@@ -97,4 +97,4 @@ This will generate a single TypeScript file (named *product-dto.ts*) in your pro
 	    tags: string[];
 	}
 
-Of course, there are much more things you can do with TypeGen. To find out more, please click *next* or visit a relevant section.
+Of course, there is much more things you can do with TypeGen. To find out more, please click *next* or visit a relevant section.

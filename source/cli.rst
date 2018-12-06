@@ -10,6 +10,12 @@ The TypeGen Command Line Interface (CLI) can be used either from the Package Man
 	
     There is a known issue with using TypeGen from Package Manager Console with ASP.NET Core projects, **under Visual Studio 2015**: Package Manager Console doesn't see the TypeGen executable. If this happens to you, you can copy the TypeGen executable from the *packages* folder to your solution directory and use it from PowerShell or CMD.
 
+After running *[dotnet-]typegen* command, the following set of actions is performed for each of the specified project folders:
+
+#. The CLI reads the assembly file (.dll or .exe). By default (if no assembly path is specified in the config), the assembly file is searched recursively in the project folder's *bin* directory. The name of the assembly must match the name of the .csproj or .xproj file present in the project folder.
+
+#. Each type in the assembly is checked for the existence of a *ExportTs...* attribute. If an attribute is present for the type, a TypeScript file will be generated.
+	
 New syntax (>= 2.0.0)
 =====================
 
@@ -47,12 +53,6 @@ Get-Cwd                   A utility option. If present, the current working dire
 
 -v or -Verbose            The CLI will run in verbose mode. More information will be outputted.
 ========================  ======
-
-After running the *TypeGen* command, the following set of actions is performed for each of the specified project folders:
-
-#. The CLI reads the assembly file (.dll or .exe). By default (if no assembly path is specified in the config), the assembly file is searched recursively in the project folder's *bin* directory. The name of the assembly must match the name of the .csproj or .xproj file present in the project folder.
-
-#. Each type in the assembly is checked for the existence of a *ExportTs...* attribute. If an attribute is present for the type, a TypeScript file will be generated.
 
 Configuration file
 ==================
@@ -132,10 +132,10 @@ An example of a configuration file (*tgconfig.json*) is presented below:
 		"defaultValuesForTypes": {
 	        "number": "-1",
 	        "Date | null": "null",
-			"string": "\"\""
+	        "string": "\"\""
 	    },
 	    "customTypeMappings": {
 	        "System.DateTime": "string",
-			"Some.Custom.Type": "number"
+	        "Some.Custom.Type": "number"
 	    }
 	}
