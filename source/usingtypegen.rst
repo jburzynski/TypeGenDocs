@@ -49,6 +49,8 @@ To indicate a default value for a TypeScript property (available only for classe
 
 The parameter passed in *TsDefaultValue*'s constructor is a string, which is directly copied to the TypeScript file as a default value for a property. Therefore, default values for string properties have to be wrapped with *"* (double quote) or *'* (single quote) characters, in order to generate a valid TypeScript file.
 
+**Feature for versions >= 2.0.0:** If you want to specify default values to be generated for all members with a given TypeScript type, you can do so by using the `defaultValuesForTypes` option in the CLI or `GeneratorOptions.DefaultValuesForTypes` in the programmatical API.
+
 TsIgnoreAttribute
 -----------------
 
@@ -292,17 +294,19 @@ The following class:
 Native property/field types
 ------------------------------
 
-Property/field types that can be represented by TypeScript built-in types will be automatically mapped to the corresponding TypeScript types. The mapping of C# to TypeScript files is presented below:
+Property/field types that can be represented by TypeScript primitive types will be automatically mapped to the corresponding TypeScript types. Default mapping of C# to TypeScript files is presented below:
 
 * *dynamic* -> *any*
 * *all C# built-in numeric and byte types* -> *number*
-* *string, char* -> *string*
+* *string, char, Guid* -> *string*
 * *bool* -> *boolean*
 * *object* -> *object*
-* *DateTime* -> *Date*
+* *DateTime, DateTimeOffset, TimeSpan* -> *Date*
 
 Additionally, any type that implements the *IDictionary* interface (or the *IDictionary* interface itself) will be mapped to TypeScript dictionary type.
 For example, *Dictionary<int, string>* will be mapped to *{ [key: number]: string; }*.
+
+There is an option to override the default mappings or create new [C# to TypeScript] type mappings by using the *customTypeMappings* option in the CLI or *GeneratorOptions.CustomTypeMappings* in the programmatical API.
 
 Complex property/field types
 ----------------------------

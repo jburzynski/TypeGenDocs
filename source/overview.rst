@@ -16,7 +16,12 @@ Requirements
 
 For .NET Standard compatibility, see `compatibility table <https://docs.microsoft.com/en-us/dotnet/articles/standard/library>`_.
 
-**Versions >= 1.5.7**
+**Versions >= 2.0.0
+
+* CLI: .NET Core 2.1
+* TypeGen.Core: .NET Standard versions: 1.3 and 2.0
+
+**Versions 1.5.7 - 1.6.7**
 
 * CLI: .NET Core 2.0
 * TypeGen.Core: .NET Standard versions: 1.3 and 2.0
@@ -35,13 +40,15 @@ Features
 
 TypeGen consists of two components: a core library (contains logic for file generation) and a Command Line Interface that utilizes the file generation logic. In most cases, the CLI should provide enough functionality to generate TypeScript sources as needed. In more complex cases, there is a possibility of using the core library file generation logic directly from your C# code. For more information about using the CLI, please refer to the :doc:`Command Line Interface <cli>` section. More details on using file generation directly from the C# code can be found in the :doc:`Programmatical usage <programmaticalusage>` section.
 
-Among the TypeGen's features are:
+Main TypeGen's features include:
 
 * generating TypeScript classes, interfaces and enums - single class per file
 * support for collection (or nested collection) property types
 * generic classes/types generation
 * support for inheritance
 * customizable convertion between C#/TypeScript names (naming conventions)
+
+Complete list of features added in each release is specified in the `changelog <http://jburzynski.net/TypeGen/changelog>`_.
 
 How it works
 ============

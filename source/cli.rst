@@ -2,17 +2,37 @@
 Command Line Interface
 ======================
 
-The TypeGen Command Line Interface (CLI) can be used from the Package Manager Console, after installing TypeGen `NuGet package <https://www.nuget.org/packages/TypeGen>`_. The syntax of the command line utility is presented below:
+The TypeGen Command Line Interface (CLI) can be used either from the Package Manager Console, after installing TypeGen `NuGet package <https://www.nuget.org/packages/TypeGen>`_, or as a `.NET CLI tool <https://www.nuget.org/packages/TypeGen.DotNetCli>`_.
 
-.. code-block:: text
-
-	TypeGen ProjectFolder1[|ProjectFolder2|(...)] [-Config-Path path1[|path2|(...)]] [Get-Cwd] [-h | -Help] [-v | -Verbose]
-	
 .. container:: Note
 
     **Note: This issue has been resolved in Visual Studio 2017 RC**
 	
     There is a known issue with using TypeGen from Package Manager Console with ASP.NET Core projects, **under Visual Studio 2015**: Package Manager Console doesn't see the TypeGen executable. If this happens to you, you can copy the TypeGen executable from the *packages* folder to your solution directory and use it from PowerShell or CMD.
+
+New syntax (>= 2.0.0)
+=====================
+
+.. code-block:: text
+
+	[dotnet-]typegen [options] [command]
+	
+	Options:
+	-h|--help               Show help information
+	-v|--verbose            Show verbose output
+	-p|--project-folder     Set project folder path(s)
+	-c|--config-path        Set config path(s) to use
+	
+	Commands:
+	generate     Generate TypeScript files
+	getcwd       Get current working directory
+
+Old syntax (1.x.x)
+==================
+	
+.. code-block:: text
+
+	TypeGen ProjectFolder1[|ProjectFolder2|(...)] [-Config-Path path1[|path2|(...)]] [Get-Cwd] [-h | -Help] [-v | -Verbose]
 
 **Arguments/options**
 
@@ -37,7 +57,7 @@ After running the *TypeGen* command, the following set of actions is performed f
 Configuration file
 ==================
 
-TypeGen CLI uses a JSON configuration file to read the file generation options. By default, the configuration file is read from the *tgconfig.json* file present in the specified project folder. If *tgconfig.json* does not exist, default options are used. Configuration file path can also be specified by using the *-Config-Path* CLI option. For configuration parameters not present in the configuration file, their default values are used upon file generation.
+TypeGen CLI uses a JSON configuration file to read the file generation options. By default, the configuration file is read from the *tgconfig.json* file present in the specified project folder. If *tgconfig.json* does not exist, default options are used. Configuration file path can also be specified by using the *--config-path* CLI option. For configuration parameters not present in the configuration file, their default values are used upon file generation.
 
 The table below shows all available config parameters, with their default values and a description:
 
@@ -75,6 +95,10 @@ createIndexFile              false                           Whether to generate
 strictNullChecks             false                           Whether to enable TypeScript2 strict null checking mode functionality.
 
 csNullableTranslation        ""                              **Only for strict null checking**. Determines how C# nullable property types will be translated to TypeScript by default. Possible values: "null", "undefined", "null|undefined" or "".
+
+defaultValuesForTypes        null                            Object containing a map of default values for the specified TypeScript types (example below)
+
+customTypeMappings           null                            Object containing a map of custom [C# to TypeScript] type mappings (example below)
 ============================ =============================== ===================
 
 (*) Converter chain is an array of converter class names. The rules for specifying converter chains are as follows:
@@ -104,5 +128,14 @@ An example of a configuration file (*tgconfig.json*) is presented below:
 	    "enumValueNameConverters": ["UnderscoreCaseToPascalCase"],
 	    "typeScriptFileExtension": "ts",
 	    "tabLength": 2,
-	    "explicitPublicAccessor": true
+	    "explicitPublicAccessor": true,
+		"defaultValuesForTypes": {
+	        "number": "-1",
+	        "Date | null": "null",
+			"string": "\"\""
+	    },
+	    "customTypeMappings": {
+	        "System.DateTime": "string",
+			"Some.Custom.Type": "number"
+	    }
 	}
