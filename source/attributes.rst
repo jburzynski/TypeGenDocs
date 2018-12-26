@@ -4,6 +4,18 @@ TypeGen attributes
 
 Using attributes is one of the two ways of selecting C# types to be generates as TypeScript sources (the other one being :doc:`generation spec <generationspec>`).
 
+Attributes have some advantages over generation specs:
+
+- they are simpler and require less overhead
+- for some people they are more readable, as you can see the configuration as you read the class/enum definition
+
+However, compared to generation specs, they also have some limitations:
+
+- configuration is tied to a type - you can only have a single configuration for a given type
+- you can only generate types that you wrote - i.e. you cannot generate types from external assemblies
+
+Typically you would consider using attributes for smaller projects, or when generation logic is fairly straightforward. For large projects where TypeScript file generation is more complex, you may consider using :doc:`generation specs <generationspec>`.
+
 ExportTs... attributes
 ======================
 
@@ -46,7 +58,7 @@ To indicate a default value for a TypeScript property (available only for classe
 
 The parameter passed in *TsDefaultValue*'s constructor is a string, which is directly copied to the TypeScript file as a default value for a property. Therefore, default values for string properties have to be wrapped with *"* (double quote) or *'* (single quote) characters, in order to generate a valid TypeScript file.
 
-**Feature for versions >= 2.0.0:** If you want to specify default values to be generated for all members with a given TypeScript type, you can do so by using the `defaultValuesForTypes` option in the CLI or `GeneratorOptions.DefaultValuesForTypes` in the programmatical API.
+**Feature for versions >= 2.0.0:** If you want to specify default values to be generated for all members with a given TypeScript type, you can do so by using the *defaultValuesForTypes* option in the CLI or *GeneratorOptions.DefaultValuesForTypes* in the programmatical API.
 
 TsIgnoreAttribute
 =================

@@ -4,6 +4,14 @@ Generation spec
 
 Generation spec is one of the two ways of selecting C# types to be generates as TypeScript sources (the other one being :doc:`attributes <attributes>`).
 
+Using a generation spec has a few advantages over attributes:
+
+- you can generate types from external assemblies
+- configuration is not tied up to a type - you can make different configurations for the same type in different generation specs
+- you can create reusable configurations and combine them together
+
+Generation specs are especially well suited for large projects or projects with complicated logic for generating TypeScript files.
+
 Overview
 ========
 
@@ -14,7 +22,7 @@ Generation spec is a class that specifies which types should be generated to Typ
 
 If a type is specified both individually and collectivelly, the latest individual settings have priority.
 
-It is possible to express everything that can be written with :doc:`attributes <attributes>` using generation spec, because each attribute has an equivalent in the generation spec configuration. For example, an equivalent of *[TsTypeAttribute(TsType.String)]* would e.g. be *AddClass<...>().Type(TsType.String)*.
+It is possible to express everything that can be written with :doc:`attributes <attributes>` using generation spec, because each attribute has an equivalent in the generation spec configuration. For example, an equivalent of :code:`[TsTypeAttribute(TsType.String)]` would e.g. be :code:`AddClass<...>().Type(TsType.String)`.
 
 By default, attributes are completely ignored when generating from a generation spec. You can change that behaviour by setting *useAttributesWithGenerationSpec* CLI option (or *GeneratorOptions.UseAttributesWithGenerationSpec*) to *true*. This will cause TypeGen to also read attribute metadata when generating from a generation spec.
 

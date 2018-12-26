@@ -9,7 +9,7 @@ The Generator class
 
 After installing TypeGen as a `NuGet package <https://www.nuget.org/packages/TypeGen>`_, you'll have access to the *Generator* (*TypeGen.Core.Generator*) class, which is responsible for generating TypeScript files. This class is also used by :doc:`TypeGen CLI <cli>` for this purpose.
 
-The class itself has 1 public method *Generate*, in 4 versions:
+The class itself has 1 public method *Generate*, in 4 overloads:
 
 * *Generate(GenerationSpec generationSpec)*
 * *Generate(IEnumerable<Assembly> assemblies)*

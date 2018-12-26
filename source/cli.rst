@@ -14,7 +14,7 @@ After running *[dotnet ]typegen* command, the following set of actions is perfor
 
 #. The CLI reads the assembly file (.dll or .exe). By default (if no assembly path is specified in the config), the assembly file is searched recursively in the project folder's *bin* directory. The name of the assembly must match the name of the .csproj or .xproj file present in the project folder.
 
-#. Each type in the assembly is checked for the existence of a *ExportTs...* attribute. If an attribute is present for the type, a TypeScript file will be generated.
+#. File generation is performed based on the CLI configuration and attributes present in the assembly
 	
 New syntax (>= 2.0.0)
 =====================
@@ -57,61 +57,69 @@ Get-Cwd                   A utility option. If present, the current working dire
 Configuration file
 ==================
 
-TypeGen CLI uses a JSON configuration file to read the file generation options. By default, the configuration file is read from the *tgconfig.json* file present in the specified project folder. If *tgconfig.json* does not exist, default options are used. Configuration file path can also be specified by using the *--config-path* CLI option. For configuration parameters not present in the configuration file, their default values are used upon file generation.
+TypeGen CLI uses a JSON configuration file to read the file generation options. By default, the configuration file is read from the *tgconfig.json* file present in the specified project folder. If *tgconfig.json* does not exist, default options are used. Configuration file path can also be specified as a CLI argument (see syntax above). For configuration parameters not present in the configuration file, their default values are used upon file generation.
 
 The table below shows all available config parameters, with their default values and a description:
 
-============================ =============================== ===================
-Parameter                    Default                         Description
-============================ =============================== ===================
-assemblies                   []                              An array of paths to assembly files to generate TypeScript sources from. If null or empty, the default strategy for finding an assembly will be used. **Note:** the order of assemblies also determines the order of reading any custom converters.
+====================================== =================== =============================== ===================
+Parameter                              Type                Default value                   Description
+====================================== =================== =============================== ===================
+assemblies                             string[]            []                              An array of paths to assembly files to generate TypeScript sources from. If null or empty, the default strategy for finding an assembly will be used. **Note:** the order of assemblies also determines the order of reading any custom converters.
 
-**(DEPR.)** assemblyPath     null                            The path to the assembly file with C# types to generate TypeScript sources for. If null or empty, the default strategy for finding an assembly will be used.
+generationSpecs (*)                    string[]            []                              An array of generation specs to be used for file generation. See the (*) explanation below regarding ways in which class names can be specified.
 
-fileNameConverters (*)       ["PascalCaseToKebabCase"]       Converter chain used for converting C# type names to TypeScript file names
+**(DEPR.)** assemblyPath               string              null                            The path to the assembly file with C# types to generate TypeScript sources for. If null or empty, the default strategy for finding an assembly will be used.
 
-typeNameConverters (*)       []                              Converter chain used for converting C# type names to TypeScript type names
+fileNameConverters (*)                 string[]            ["PascalCaseToKebabCase"]       Converter chain used for converting C# type names to TypeScript file names. See the (*) explanation below regarding ways in which class names can be specified.
 
-propertyNameConverters (*)   ["PascalCaseToCamelCase"]       Converter chain used for converting C# property/field names to TypeScript property names
+typeNameConverters (*)                 string[]            []                              Converter chain used for converting C# type names to TypeScript type names. See the (*) explanation below regarding ways in which class names can be specified.
 
-enumValueNameConverters (*)  []                              Converter chain used for converting C# enum value names to TypeScript enum value names
+propertyNameConverters (*)             string[]            ["PascalCaseToCamelCase"]       Converter chain used for converting C# property/field names to TypeScript property names. See the (*) explanation below regarding ways in which class names can be specified.
 
-externalAssemblyPaths        []                              An array of paths to external assemblies. These paths are searched (recursively) for any assembly references that cannot be automatically resolved. NuGet package folders (global + machine-wide and project fallback) are searched by default.
+enumValueNameConverters (*)            string[]            []                              Converter chain used for converting C# enum value names to TypeScript enum value names. See the (*) explanation below regarding ways in which class names can be specified.
 
-typeScriptFileExtension      "ts"                            File extension for the generated TypeScript files
+enumStringInitializersConverters (*)   string[]            []                              Converter chain used for converting C# enum value names to TypeScript enum string initializers. See the (*) explanation below regarding ways in which class names can be specified.
 
-tabLength                    4                               The number of spaces per tab in the generated TypeScript files
+externalAssemblyPaths                  string[]            []                              An array of paths to external assemblies. These paths are searched (recursively) for any assembly references that cannot be automatically resolved. NuGet package folders (global + machine-wide and project fallback) are searched by default.
 
-explicitPublicAccessor       false                           Whether to use explicit *public* accessor in the generated TypeScript class files
+typeScriptFileExtension                string              "ts"                            File extension for the generated TypeScript files
 
-singleQuotes                 false                           Whether to use single quotes for string literals in the generated TypeScript files
+tabLength                              number              4                               The number of spaces per tab in the generated TypeScript files
 
-addFilesToProject            false                           **Only for .NET Framework apps (not .NET Core)**. Whether to add the generated TypeScript files to the project file (\*.csproj)
+explicitPublicAccessor                 boolean             false                           Whether to use explicit *public* accessor in the generated TypeScript class files
 
-outputPath                   ""                              Output path for generated files, relative to the project folder.
+singleQuotes                           boolean             false                           Whether to use single quotes for string literals in the generated TypeScript files
 
-createIndexFile              false                           Whether to generate an index (barrel) file in the root TypeScript output directory. Index exports everything from all generated TypeScript files.
+addFilesToProject                      boolean             false                           **Only for .NET Framework apps (not .NET Core)**. Whether to add the generated TypeScript files to the project file (\*.csproj)
 
-strictNullChecks             false                           Whether to enable TypeScript2 strict null checking mode functionality.
+outputPath                             string              ""                              Output path for generated files, relative to the project folder.
 
-csNullableTranslation        ""                              **Only for strict null checking**. Determines how C# nullable property types will be translated to TypeScript by default. Possible values: "null", "undefined", "null|undefined" or "".
+createIndexFile                        boolean             false                           Whether to generate an index (barrel) file in the root TypeScript output directory. Index exports everything from all generated TypeScript files.
 
-defaultValuesForTypes        null                            Object containing a map of default values for the specified TypeScript types (example below)
+strictNullChecks                       boolean             false                           Whether to enable TypeScript2 strict null checking mode functionality.
 
-customTypeMappings           null                            Object containing a map of custom [C# to TypeScript] type mappings (example below)
-============================ =============================== ===================
+csNullableTranslation                  string              ""                              **Only for strict null checking**. Determines how C# nullable property types will be translated to TypeScript by default. Possible values: "null", "undefined", "null|undefined" or "".
 
-(*) Converter chain is an array of converter class names. The rules for specifying converter chains are as follows:
+defaultValuesForTypes                  Object              null                            Object containing a map of default values for the specified TypeScript types (example below)
 
-* Names of converter classes can be specified with or without the *Converter* suffix.
+customTypeMappings                     Object              null                            Object containing a map of custom [C# to TypeScript] type mappings (example below)
 
-* Names of converter classes can be specified as a class name or a fully qualified class name.
+generateFromAssemblies                 boolean             null                            Whether to generate files from assemblies specified in `assemblies` parameter. If null, files are generated from assemblies only if no generation specs are specified.
 
-* If only the name of a converter is specified, the converter class will first be searched in the project's assembly and then (if not found) in *TypeGen.Core*.
+useAttributesWithGenerationSpec        boolean             false                           Whether to read the generation metadata from attributes when generating from a generation spec
 
-* To read a converter class from a specific assembly, converter path can be defined in the following format: *assembly/path/assembly.dll:ConverterClass*, where assembly path is relative to the project's folder.
+enumStringInitializers                 boolean             false                           Whether to use TypeScript enum string initializers by default
+====================================== =================== =============================== ===================
 
-For more information on converters, please refer to the :doc:`Coverters <converters>` section.
+(*) The rules for specifying class names are as follows:
+
+* Names of converter/generation spec classes can be specified with or without the *Converter*/*GenerationSpec* suffix.
+
+* Class names can be specified as a name or a fully qualified name.
+
+* If only the name of a class is specified, the class will first be searched in the project's assembly and then (if not found) in *TypeGen.Core*.
+
+* To read a class from a specific assembly, path can be defined in the following format: *assembly/path/assembly.dll:ClassName*, where assembly path is relative to the project's folder.
 
 Example
 -------

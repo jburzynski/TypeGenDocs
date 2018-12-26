@@ -57,9 +57,9 @@ The big picture is best illustrated by this diagram:
 
 .. image:: images/big-picture.png
 
-In short, TypeGen gets all C# classes/enums (annotated with appropriate attributes) from an assembly and generates corresponding TypeScript files for them in the file system.
+In short, TypeGen gets selected C# classes/enums from an assembly and generates corresponding TypeScript files for them in the file system.
 
-Since TypeGen takes a .NET assembly, in theory it is also possible to provide an assembly written in a different language than C#. However, TypeGen is only tested against C# code.
+Since TypeGen takes a .NET assembly, in theory it is also possible to provide an assembly written in a different language than C#. However, TypeGen is only tested with C# code.
 
 Getting started
 ===============
@@ -87,12 +87,12 @@ Let's say you have a *ProductDto* class that you want to export to TypeScript. Y
 	public class MyGenerationSpec : GenerationSpec
 	{
 	    public MyGenerationSpec()
-		{
-		    AddClass<ProductDto>();
-		}
+	    {
+	        AddClass<ProductDto>();
+	    }
 	}
 
-After building your project, type `TypeGen generate` into the Package Manager Console, or `dotnet typegen generate` in the system console if you're using TypeGen .NET CLI tool.
+After building your project, type :code:`TypeGen generate` into the Package Manager Console, or :code:`dotnet typegen generate` in the system console if you're using TypeGen .NET CLI tool.
 
 This will generate a single TypeScript file (named *product-dto.ts*) in your project directory. The file will look like this:
 
