@@ -10,7 +10,7 @@ The TypeGen Command Line Interface (CLI) can be used either from the Package Man
 	
     There is a known issue with using TypeGen from Package Manager Console with ASP.NET Core projects, **under Visual Studio 2015**: Package Manager Console doesn't see the TypeGen executable. If this happens to you, you can copy the TypeGen executable from the *packages* folder to your solution directory and use it from PowerShell or CMD.
 
-After running *[dotnet-]typegen* command, the following set of actions is performed for each of the specified project folders:
+After running *[dotnet ]typegen* command, the following set of actions is performed for each of the specified project folders:
 
 #. The CLI reads the assembly file (.dll or .exe). By default (if no assembly path is specified in the config), the assembly file is searched recursively in the project folder's *bin* directory. The name of the assembly must match the name of the .csproj or .xproj file present in the project folder.
 
@@ -111,7 +111,7 @@ customTypeMappings           null                            Object containing a
 
 * To read a converter class from a specific assembly, converter path can be defined in the following format: *assembly/path/assembly.dll:ConverterClass*, where assembly path is relative to the project's folder.
 
-For more information on converters, please refer to the :doc:`Using TypeGen <usingtypegen>` section.
+For more information on converters, please refer to the :doc:`Coverters <converters>` section.
 
 Example
 -------

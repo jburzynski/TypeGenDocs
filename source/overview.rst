@@ -38,7 +38,7 @@ For .NET Standard compatibility, see `compatibility table <https://docs.microsof
 Features
 ========
 
-TypeGen consists of two components: a core library (contains logic for file generation) and a Command Line Interface that utilizes the file generation logic. In most cases, the CLI should provide enough functionality to generate TypeScript sources as needed. In more complex cases, there is a possibility of using the core library file generation logic directly from your C# code. For more information about using the CLI, please refer to the :doc:`Command Line Interface <cli>` section. More details on using file generation directly from the C# code can be found in the :doc:`Programmatical usage <programmaticalusage>` section.
+TypeGen consists of two components: a core library (contains logic for file generation) and a Command Line Interface that utilizes the file generation logic. In most cases, the CLI should provide enough functionality to generate TypeScript sources as needed. In more complex cases, there is a possibility of using the core library file generation logic directly from your C# code. For more information about using the CLI, please refer to the :doc:`Command Line Interface <cli>` section. More details on using file generation directly from the C# code can be found in the :doc:`Programmatical API <programmaticalapi>` section.
 
 Main TypeGen's features include:
 
@@ -59,6 +59,8 @@ The big picture is best illustrated by this diagram:
 
 In short, TypeGen gets all C# classes/enums (annotated with appropriate attributes) from an assembly and generates corresponding TypeScript files for them in the file system.
 
+Since TypeGen takes a .NET assembly, in theory it is also possible to provide an assembly written in a different language than C#. However, TypeGen is only tested against C# code.
+
 Getting started
 ===============
 
@@ -67,11 +69,11 @@ To use TypeGen in your code or from the Package Manager Console, install the `Nu
 Quick example
 =============
 
-Let's say you have a *ProductDto* class that you want to export to TypeScript. You first need to mark the class as exportable to TypeScript:
+Let's say you have a *ProductDto* class that you want to export to TypeScript. You first need to mark the class as exportable to TypeScript. You can do this either with attributes or a generation spec:
 
 .. code-block:: csharp
 
-	using TypeGen.Core.TypeAnnotations;
+    //attributes
 
 	[ExportTsClass]
 	public class ProductDto
@@ -80,13 +82,17 @@ Let's say you have a *ProductDto* class that you want to export to TypeScript. Y
 	    public string[] Tags { get; set; }
 	}
 
-After building your project, type into the Package Manager Console:
+	// generation spec
 
-.. code-block:: text
+	public class MyGenerationSpec : GenerationSpec
+	{
+	    public MyGenerationSpec()
+		{
+		    AddClass<ProductDto>();
+		}
+	}
 
-	TypeGen ProjectFolder
-
-...where *ProjectFolder* is your project folder, relative to your solution directory.
+After building your project, type `TypeGen generate` into the Package Manager Console, or `dotnet typegen generate` in the system console if you're using TypeGen .NET CLI tool.
 
 This will generate a single TypeScript file (named *product-dto.ts*) in your project directory. The file will look like this:
 

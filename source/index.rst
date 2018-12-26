@@ -21,10 +21,14 @@ Contents:
 
    overview
    usingtypegen
+   attributes
+   generationspec
+   whatisgenerated
+   converters
+   otherfeatures
    cli
-   programmaticalusage
+   programmaticalapi
    API Reference <http://jburzynski.net/TypeGen/api-reference/api>
-   cookbook
    troubleshooting
    legal
 
