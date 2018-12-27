@@ -15,7 +15,7 @@ After running *[dotnet ]typegen* command, the following set of actions is perfor
 #. The CLI reads the assembly file (.dll or .exe). By default (if no assembly path is specified in the config), the assembly file is searched recursively in the project folder's *bin* directory. The name of the assembly must match the name of the .csproj or .xproj file present in the project folder.
 
 #. File generation is performed based on the CLI configuration and attributes present in the assembly
-	
+
 New syntax (>= 2.0.0)
 =====================
 

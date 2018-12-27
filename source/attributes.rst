@@ -9,12 +9,12 @@ Attributes have some advantages over generation specs:
 - they are simpler and require less overhead
 - for some people they are more readable, as you can see the configuration as you read the class/enum definition
 
-However, compared to generation specs, they also have some limitations:
+Compared to generation specs they also have some limitations:
 
 - configuration is tied to a type - you can only have a single configuration for a given type
 - you can only generate types that you wrote - i.e. you cannot generate types from external assemblies
 
-Typically you would consider using attributes for smaller projects, or when generation logic is fairly straightforward. For large projects where TypeScript file generation is more complex, you may consider using :doc:`generation specs <generationspec>`.
+Typical use case for using attributes is smaller projects or projects without complex file generation logic.
 
 ExportTs... attributes
 ======================

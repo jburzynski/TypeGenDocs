@@ -10,7 +10,7 @@ Using a generation spec has a few advantages over attributes:
 - configuration is not tied up to a type - you can make different configurations for the same type in different generation specs
 - you can create reusable configurations and combine them together
 
-Generation specs are especially well suited for large projects or projects with complicated logic for generating TypeScript files.
+Using generation specs is typically good for bigger projects or projects with more complex file generation logic.
 
 Overview
 ========
