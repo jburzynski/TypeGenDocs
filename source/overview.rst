@@ -92,7 +92,7 @@ Let's say you have a *ProductDto* class that you want to export to TypeScript. Y
 	    }
 	}
 
-After building your project, type :code:`TypeGen generate` into the Package Manager Console, or :code:`dotnet typegen generate` in the system console if you're using TypeGen .NET CLI tool.
+After building your project, type :code:`TypeGen generate` into the Package Manager Console (You might have to restart Visual Studio), or :code:`dotnet typegen generate` in the system console if you're using TypeGen .NET CLI tool.
 
 This will generate a single TypeScript file (named *product-dto.ts*) in your project directory. The file will look like this:
 
