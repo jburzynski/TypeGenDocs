@@ -100,6 +100,8 @@ addFilesToProject                      boolean             false                
 
 outputPath                             string              ""                              Output path for generated files, relative to the project folder.
 
+clearOutputDirectory                   boolean             false                           Whether to clear the output directory before generating new files (removing all files and recursively removing all subdirectories in the output directory)
+
 createIndexFile                        boolean             false                           Whether to generate an index (barrel) file in the root TypeScript output directory. Index exports everything from all generated TypeScript files.
 
 strictNullChecks                       boolean             false                           Whether to enable TypeScript2 strict null checking mode functionality.
