@@ -117,6 +117,8 @@ generateFromAssemblies                 boolean             null                 
 useAttributesWithGenerationSpec        boolean             false                           Whether to read the generation metadata from attributes when generating from a generation spec
 
 enumStringInitializers                 boolean             false                           Whether to use TypeScript enum string initializers by default
+
+fileHeading                            string              null                            TypeScript file heading text (default is "(...) This is a TypeGen auto-generated file. (...)")
 ====================================== =================== =============================== ===================
 
 (*) The rules for specifying class names are as follows:
