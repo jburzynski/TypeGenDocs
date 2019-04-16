@@ -103,4 +103,4 @@ This will generate a single TypeScript file (named *product-dto.ts*) in your pro
 	    tags: string[];
 	}
 
-Of course, there is much more things you can do with TypeGen. To find out more, please click *next* or visit a relevant section.
+Of course, there is much more you can do with TypeGen. To find out more, please click *next* or visit a relevant section.
