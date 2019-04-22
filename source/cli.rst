@@ -147,7 +147,7 @@ An example of a configuration file (*tgconfig.json*) is presented below:
 	    "typeScriptFileExtension": "ts",
 	    "tabLength": 2,
 	    "explicitPublicAccessor": true,
-		"defaultValuesForTypes": {
+	    "defaultValuesForTypes": {
 	        "number": "-1",
 	        "Date | null": "null",
 	        "string": "\"\""
