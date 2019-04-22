@@ -273,7 +273,9 @@ The above will work only if strict null checking mode is enabled (in CLI or prog
 TsStringInitializers
 ====================
 
-Used to specify if TypeScript string initializers should be used for an enum.
+Used to specify if TypeScript string initializers should be used for an enum. There is also a possibility to enable enum string initializers globally in the CLI (*enumStringInitializers* parameter) or in the generator options (*GeneratorOptions.EnumStringInitializers*).
+
+Opt-in:
 
 .. code-block:: csharp
 
@@ -285,6 +287,8 @@ Used to specify if TypeScript string initializers should be used for an enum.
 	    B
 	}
 
+Opt-out:
+
 .. code-block:: csharp
 
 	[ExportTsEnum]
@@ -294,3 +298,15 @@ Used to specify if TypeScript string initializers should be used for an enum.
 	    A,
 	    B
 	}
+
+If string initializers are enabled, the above opt-in example will produce the following TypeScript:
+
+.. code-block:: typescript
+
+	export enum MyEnum
+	{
+	    A = "A",
+	    B = "B"
+	}
+	
+To specify custom logic for changing (converting) a C# enum value name to an enum initializer string, you can specify enum string initializers converters in the CLI (*enumStringInitializersConverters* parameter) or in the generator options (*GeneratorOptions.EnumStringInitializersConverters*).
