@@ -32,6 +32,11 @@ There is currently one event in the *Generator* class you can subscribe to - the
 
 The default handler for this event, added in the *Generator*'s constructor, saves the generated file content to the file system. There is a possibility to unsubscribe the default event handler (by using the *Generator.UnsubscribeDefaultFileContentGeneratedHandler()* method), which will cause the generated file content to not be saved in the file system. You can also re-subscribe the default handler by using the *Generator.SubscribeDefaultFileContentGeneratedHandler()* method.
 
+Logging
+-------
+
+The *Generator* class logs messages using the *Generator.Logger* instance. You can either provide your custom implementation of the *TypeGen.Core.Business.ILogger* interface, or you can use the built-in *TypeGen.Core.Business.ConsoleLogger* for logging purposes. *Generator.Logger* is null by default, or you can also set it to null - in this case, no messages will be logged.
+
 Generator options
 =================
 
