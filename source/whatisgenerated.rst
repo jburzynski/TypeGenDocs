@@ -28,6 +28,28 @@ The following class:
 	    myProperty: number;
 	    myProperty2: string;
 	}
+	
+Static, readonly and const properties/fields
+--------------------------------------------
+
+By default, any static, readonly or const C# property/field is translated as shown below:
+
+* *static* property/field -> TypeScript *static* property (only for TypeScript classes)
+* *readonly* field -> TypeScript *readonly* property (for both TypeScript classes and interfaces; additionally, the property's default value is generated for TS classes)
+* *const* field -> for TypeScript classes: *static readonly* property with default value; for TypeScript interfaces: *readonly* property
+
+To change the behavior described above, you can use a combination of *TsIgnore*, *TsDefaultValue*, *TsStatic/TsNonStatic* or *TsReadonly/TsNotReadonly* attributes on a property or field (more information in the *TypeGen attributes* section).
+
+Default values for TypeScript properties
+----------------------------------------
+
+A default value for a TypeScript property will be generated in any of the following cases:
+
+* The C# property/field is annotated with the *TsDefaultValue* attribute
+* The C# field is assigned a value in C# code (note: *readonly* fields always have an assigned value, even if not explicitly specified in C#)
+* A default value is specified for the generated property's type in either the *defaultValuesForTypes* CLI parameter or the *GeneratorOptions.DefaultValuesForTypes* property
+
+The order of checking for a default value to use is the same as listed above (first *TsDefaultValueAttribute*, then C#-assigned value, then default value for a TS type).
 
 Primitive property/field types
 ==============================
@@ -39,7 +61,7 @@ Property/field types that can be represented by TypeScript primitive types will 
 * *string, char, Guid* -> *string*
 * *bool* -> *boolean*
 * *object* -> *object*
-* *DateTime, DateTimeOffset, TimeSpan* -> *Date*
+* *DateTime, DateTimeOffset* -> *Date*
 
 Additionally, any type that implements the *IDictionary* interface (or the *IDictionary* interface itself) will be mapped to TypeScript dictionary type.
 For example, *Dictionary<int, string>* will be mapped to *{ [key: number]: string; }*.

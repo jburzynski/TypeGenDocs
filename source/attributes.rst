@@ -248,7 +248,7 @@ generated TypeScript (MyBase is not generated if it doesn't have an *ExportTs...
 TsNull, TsNotNull, TsUndefined, TsNotUndefined attributes
 =========================================================
 
-These attributes are used in strict null checking mode to indicate an opt-in/out *null* or *undefined* type union. Negative (*not*) attributes have precedence over positive attributes.
+These attributes are used to indicate an opt-in/out *null* or *undefined* type union (used in TypeScript null checking mode). Negative (*not*) attributes have precedence over positive attributes.
 E.g. this definition:
 
 .. code-block:: csharp
@@ -267,8 +267,6 @@ will be translated to:
 	export class MyClass {
 	    myProperty: string | null;
 	}
-	
-The above will work only if strict null checking mode is enabled (in CLI or programmatically in the generator options).
 
 TsStringInitializers
 ====================
@@ -310,3 +308,75 @@ If string initializers are enabled, the above opt-in example will produce the fo
 	}
 	
 To specify custom logic for changing (converting) a C# enum value name to an enum initializer string, you can specify enum string initializers converters in the CLI (*enumStringInitializersConverters* parameter) or in the generator options (*GeneratorOptions.EnumStringInitializersConverters*).
+
+TsStatic, TsNotStatic attributes
+================================
+
+These attributes are used to mark a property or a field as static / not static.
+
+C# code:
+
+.. code-block:: csharp
+
+	[ExportTsClass]
+	public class MyClass
+	{
+	    public static string StaticField;
+		
+	    [TsNotStatic]
+	    public static string StaticOptOut;
+	    
+	    [TsStatic]
+	    public string StaticOptIn;
+	    
+	    [TsNotStatic]
+	    public const string NotStaticConst = "value";
+	}
+	
+generated TypeScript:
+
+.. code-block:: typescript
+
+	export class MyClass {
+	    static staticField: string;
+	    staticOptOut: string;
+	    static staticOptIn: string;
+	    readonly notStaticConst: string = "value";
+	}
+	
+TsReadonly, TsNotReadonly attributes
+====================================
+
+These attributes are used to mark a property or a field as readonly / not readonly.
+
+C# code:
+
+.. code-block:: csharp
+
+	[ExportTsClass]
+	public class MyClass
+	{
+	    public readonly string ReadonlyField = "value";
+		
+	    [TsNotReadonly]
+	    [TsDefaultValue(null)]
+	    public readonly string ReadonlyOptOut;
+		
+	    [TsReadonly]
+	    public string ReadonlyOptIn = "value";
+		
+	    [TsNotReadonly]
+	    public const string NotReadonlyConst = "value";
+	}
+	
+generated TypeScript:
+
+.. code-block:: typescript
+
+	export class MyClass {
+	    readonly readonlyField: string = "value";
+	    readonlyOptOut: string;
+	    readonly readonlyOptIn: string = "value";
+	    static notReadonlyConst: string = "value";
+	}
+	

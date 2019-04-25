@@ -54,14 +54,20 @@ Examples
 
             AddEnum<ProductType>("output/dir") // specifying an enum
 
-
-            ForAssembly(GetType().Assembly)                        // generating from assembly
-                .AddClasses(@"MyProject\.Web\.Products\.(.+)")
-                .AddClasses(@"MyProject\.Web\.Cars\.(.+)")
-                .IgnoreBase()                                      // common option for all classes in Cars namespace
-                .AddInterfaces(@"MyProject\.Web\.Settings\.(.+)");
-
-            ForAssembly(GetType().Assembly)
-                .AddClasses(".+");                                 // generating everything from an assembly
+            // generate everything from an assembly
+			
+            foreach (Type type in GetType().Assembly.GetLoadableTypes())
+            {
+                AddClass(type);
+            }
+            
+            // generate types by namespace
+            
+            IEnumerable<Type> types = GetType().Assembly.GetLoadableTypes()
+                .Where(x => x.FullName.StartsWith("MyProject.Web.Dtos"));
+            foreach (Type type in types)
+            {
+                AddClass(type);
+            }
         }
     }

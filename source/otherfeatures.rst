@@ -60,22 +60,17 @@ Multiple code fragments can be tagged with *<custom-head>* or *<custom-body>* as
 
 *<custom-head>* and *<custom-body>* tags are available since TypeGen 1.4.0. Prior to this version, the *<keep-ts>* tag was used for preserving parts of the type's definition. The *<keep-ts>* tag will still work in versions higher than 1.3.0 (unless decided otherwise), however its use is deprecated since version 1.4.0.
 
-Strict null checking mode
-=========================
+Strict null checking
+====================
 
-TypeGen versions >= 1.6.0 support TypeScript strict null checking mode. To enable it, do the following:
+You can specify how C# nullable property/field types will be translated to TypeScript by default, by using the *csNullableTranslation* parameter (CLI or generator options). Available choices are:
 
-* in CLI: set *strictNullChecks* config parameter to *true*
-* programmatically: set generator options *StrictNullChecks* parameter to *true*
+* type | null
+* type | undefined
+* type | null | undefined
+* type (not null and not undefined)
 
-You can also specify how C# nullable property types will be translated to TypeScript by default, by using the *csNullableTranslation* parameter (CLI or generator options). Available choices are:
-
-* null
-* undefined
-* null | undefined
-* *not null and not undefined*
-
-To override the default C# nullable types translation, you can use the following attributes on a property or field: *TsNull*, *TsNotNull*, *TsUndefined*, *TsNotUndefined* (more on these attributes above, in the *TypeGen annotations* section).
+To override the default C# nullable types translation or to specify a type union for non-nullable types, you can use the following attributes on a property or field: *TsNull*, *TsNotNull*, *TsUndefined*, *TsNotUndefined* (you can find more information on these attributes in the *TypeGen attributes* section).
 
 Adding files to a .NET framework project
 ========================================
@@ -90,19 +85,17 @@ An index file is a TypeScript file in the root TypeScript files directory, conta
 .. code-block:: typescript
 
     export * from './foo';
-    export * from './foo-type';
     export * from './bar';
-    export * from './c';
-    export * from './e-class';
-    export * from './f-class';
-    export * from './d';
+    export * from './baz';
+    export * from './foo-bar';
+    export * from './foo-bar-baz';
 
-Generating default values for TS properties
-===========================================
+Default values for TS properties based on the type
+==================================================
 
-It is possible to generate default values for properties inside TS classes/interfaces, depending on the property type. An example of using this feature is described in the :doc:`CLI section <cli>`. This feature is also available in *GeneratorOptions* (programmatical API).
+It is possible to generate default values for properties inside TS classes/interfaces, depending on the property type. The [TS type -> default value] mappings can be specified either in the *defaultValuesForTypes* CLI parameter or in the *GeneratorOptions.DefaultValuesForTypes* property.
 
 Custom type mappings
 ====================
 
-TypeGen allows to override its default C# to TS type mappings or create new custom mappings. More details in the :doc:`CLI section <cli>`. This feature is also available in *GeneratorOptions* (programmatical API).
+TypeGen allows to override its default C# to TS type mappings or create new custom mappings. The way to define mappings is via either the *customTypeMappings* CLI parameter or the *GeneratorOptions.CustomTypeMappings* property.
