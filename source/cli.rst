@@ -117,6 +117,8 @@ useAttributesWithGenerationSpec        boolean             false                
 enumStringInitializers                 boolean             false                           Whether to use TypeScript enum string initializers by default
 
 fileHeading                            string              null                            TypeScript file heading text (default is "(...) This is a TypeGen auto-generated file. (...)")
+
+useDefaultExport                       bool                false                           Whether to use TypeScript default exports by default
 ====================================== =================== =============================== ===================
 
 (*) The rules for specifying class names are as follows:

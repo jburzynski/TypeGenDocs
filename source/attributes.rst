@@ -245,31 +245,52 @@ generated TypeScript (MyBase is not generated if it doesn't have an *ExportTs...
 	    myProperty: string;
 	}
 
-TsNull, TsNotNull, TsUndefined, TsNotUndefined attributes
-=========================================================
+TsDefaultExportAttribute
+========================
 
-These attributes are used to indicate an opt-in/out *null* or *undefined* type union (used in TypeScript null checking mode). Negative (*not*) attributes have precedence over positive attributes.
-E.g. this definition:
+Used to specify if the generated TypeScript type should use a default export. There is also a possibility to enable default exports globally in the CLI (*useDefaultExport* parameter) or in the generator options (*GeneratorOptions.UseDefaultExport*).
+
+Opt-in:
 
 .. code-block:: csharp
 
-	[ExportTsClass]
-	public class MyClass
+	[ExportTsInterface]
+	[TsDefaultExport]
+	public class MyInterface
 	{
-	    [TsNull]
-	    public string MyProperty { get; set; }
+	    //...
 	}
 	
-will be translated to:
+translates to:
 
 .. code-block:: typescript
 
-	export class MyClass {
-	    myProperty: string | null;
+	interface MyInterface {
+	    //...
+	}
+	export default MyInterface;
+
+Opt-out:
+
+.. code-block:: csharp
+
+	[ExportTsInterface]
+	[TsDefaultExport(false)]
+	public class MyInterface
+	{
+	    //...
+	}
+	
+translates to:
+
+.. code-block:: typescript
+
+	export interface MyInterface {
+	    //...
 	}
 
-TsStringInitializers
-====================
+TsStringInitializersAttribute
+=============================
 
 Used to specify if TypeScript string initializers should be used for an enum. There is also a possibility to enable enum string initializers globally in the CLI (*enumStringInitializers* parameter) or in the generator options (*GeneratorOptions.EnumStringInitializers*).
 
@@ -295,6 +316,29 @@ Opt-out:
 	{
 	    A,
 	    B
+	}
+
+TsNull, TsNotNull, TsUndefined, TsNotUndefined attributes
+=========================================================
+
+These attributes are used to indicate an opt-in/out *null* or *undefined* type union (used in TypeScript null checking mode). Negative (*not*) attributes have precedence over positive attributes.
+E.g. this definition:
+
+.. code-block:: csharp
+
+	[ExportTsClass]
+	public class MyClass
+	{
+	    [TsNull]
+	    public string MyProperty { get; set; }
+	}
+	
+will be translated to:
+
+.. code-block:: typescript
+
+	export class MyClass {
+	    myProperty: string | null;
 	}
 
 If string initializers are enabled, the above opt-in example will produce the following TypeScript:

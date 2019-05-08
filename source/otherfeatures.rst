@@ -99,3 +99,8 @@ Custom type mappings
 ====================
 
 TypeGen allows to override its default C# to TS type mappings or create new custom mappings. The way to define mappings is via either the *customTypeMappings* CLI parameter or the *GeneratorOptions.CustomTypeMappings* property.
+
+Default exports
+===============
+
+There is a possibility to use default exports instead of named exports when generating TypeScript types. This feature can be enabled/disabled globally, by setting the *useDefaultExport* CLI parameter or the *GeneratorOptions.UseDefaultExport* property, or a one-time opt-in/out can be used with either the `TsDefaultExportAttribute` or the `DefaultExport(bool)` generation spec method.
