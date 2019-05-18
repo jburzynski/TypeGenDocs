@@ -43,6 +43,13 @@ To change the behavior described above, you can use a combination of *TsIgnore*,
 Default values for TypeScript properties
 ----------------------------------------
 
+A default value for a TypeScript property will be generated in any of the following cases:
+
+* The C# property/field is annotated with the *TsDefaultValue* attribute
+* The C# property/field has a non-default value
+* A default value is specified for the generated property's type in either the *defaultValuesForTypes* CLI parameter or the *GeneratorOptions.DefaultValuesForTypes* property
+
+The order of checking for a default value to use is the same as listed above (first *TsDefaultValueAttribute*, then the member's value, then default value for a TS type).
 
 Primitive property/field types
 ==============================
