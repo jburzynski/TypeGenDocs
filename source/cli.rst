@@ -20,7 +20,7 @@ After running the *[dotnet ]typegen* command, the following set of actions is pe
 
 #. The CLI reads the assembly file (.dll or .exe). By default (if no assembly path is specified in the config), the assembly file is searched recursively in the project folder's *bin* directory. The name of the assembly must match the name of the .csproj or .xproj file present in the project folder.
 
-#. File generation is performed based on the CLI configuration and attributes present in the assembly
+#. File generation is performed based on the options specified in the configuration file
 
 New syntax (>= 2.0.0)
 =====================
@@ -67,67 +67,67 @@ TypeGen CLI uses a JSON configuration file to read the file generation options. 
 
 The table below shows all available config parameters, with their default values and a description:
 
-====================================== =================== =============================== ===================
-Parameter                              Type                Default value                   Description
-====================================== =================== =============================== ===================
-assemblies                             string[]            []                              An array of paths to assembly files to generate TypeScript sources from. If null or empty, the default strategy for finding an assembly will be used. **Note:** the order of assemblies also determines the order of reading any custom converters.
+====================================== =================== ====================================== ===================
+Parameter                              Type                Default value                          Description
+====================================== =================== ====================================== ===================
+assemblies                             string[]            []                                     An array of paths to assembly files to generate TypeScript sources from. If null or empty, the default strategy for finding an assembly will be used. **Note:** the order of assemblies also determines the order of reading any custom converters.
 
-generationSpecs (*)                    string[]            []                              An array of generation specs to be used for file generation. See the (*) explanation below regarding ways in which class names can be specified.
+generationSpecs (*)                    string[]            []                                     An array of generation specs to be used for file generation. See the (*) explanation below regarding ways in which class names can be specified.
 
-**(DEPR.)** assemblyPath               string              null                            The path to the assembly file with C# types to generate TypeScript sources for. If null or empty, the default strategy for finding an assembly will be used.
+**(DEPR.)** assemblyPath               string              null                                   The path to the assembly file with C# types to generate TypeScript sources for. If null or empty, the default strategy for finding an assembly will be used.
 
-fileNameConverters (*)                 string[]            ["PascalCaseToKebabCase"]       Converter chain used for converting C# type names to TypeScript file names. See the (*) explanation below regarding ways in which class names can be specified.
+fileNameConverters (*)                 string[]            ["PascalCaseToKebabCaseConverter"]     Converter chain used for converting C# type names to TypeScript file names. See the (*) explanation below regarding ways in which class names can be specified.
 
-typeNameConverters (*)                 string[]            []                              Converter chain used for converting C# type names to TypeScript type names. See the (*) explanation below regarding ways in which class names can be specified.
+typeNameConverters (*)                 string[]            []                                     Converter chain used for converting C# type names to TypeScript type names. See the (*) explanation below regarding ways in which class names can be specified.
 
-propertyNameConverters (*)             string[]            ["PascalCaseToCamelCase"]       Converter chain used for converting C# property/field names to TypeScript property names. See the (*) explanation below regarding ways in which class names can be specified.
+propertyNameConverters (*)             string[]            ["PascalCaseToCamelCaseConverter"]     Converter chain used for converting C# property/field names to TypeScript property names. See the (*) explanation below regarding ways in which class names can be specified.
 
-enumValueNameConverters (*)            string[]            []                              Converter chain used for converting C# enum value names to TypeScript enum value names. See the (*) explanation below regarding ways in which class names can be specified.
+enumValueNameConverters (*)            string[]            []                                     Converter chain used for converting C# enum value names to TypeScript enum value names. See the (*) explanation below regarding ways in which class names can be specified.
 
-enumStringInitializersConverters (*)   string[]            []                              Converter chain used for converting C# enum value names to TypeScript enum string initializers. See the (*) explanation below regarding ways in which class names can be specified.
+enumStringInitializersConverters (*)   string[]            []                                     Converter chain used for converting C# enum value names to TypeScript enum string initializers. See the (*) explanation below regarding ways in which class names can be specified.
 
-externalAssemblyPaths                  string[]            []                              An array of paths to external assemblies. These paths are searched (recursively) for any assembly references that cannot be automatically resolved. NuGet package folders (global + machine-wide and project fallback) are searched by default.
+externalAssemblyPaths                  string[]            []                                     An array of paths to external assemblies. These paths are searched (recursively) for any assembly references that cannot be automatically resolved. NuGet package folders (global + machine-wide and project fallback) are searched by default.
 
-typeScriptFileExtension                string              "ts"                            File extension for the generated TypeScript files
+typeScriptFileExtension                string              "ts"                                   File extension for the generated TypeScript files
 
-tabLength                              number              4                               The number of spaces per tab in the generated TypeScript files
+tabLength                              number              4                                      The number of spaces per tab in the generated TypeScript files
 
-explicitPublicAccessor                 boolean             false                           Whether to use explicit *public* accessor in the generated TypeScript class files
+useTabCharacter                        boolean             false                                  Whether to use the tab character instead or multiple spaces
 
-singleQuotes                           boolean             false                           Whether to use single quotes for string literals in the generated TypeScript files
+explicitPublicAccessor                 boolean             false                                  Whether to use explicit *public* accessor in the generated TypeScript class files
 
-addFilesToProject                      boolean             false                           **Only for .NET Framework apps (not .NET Core)**. Whether to add the generated TypeScript files to the project file (\*.csproj)
+singleQuotes                           boolean             false                                  Whether to use single quotes for string literals in the generated TypeScript files
 
-outputPath                             string              ""                              Output path for generated files, relative to the project folder.
+addFilesToProject                      boolean             false                                  **Only for .NET Framework apps (not .NET Core)**. Whether to add the generated TypeScript files to the project file (\*.csproj)
 
-clearOutputDirectory                   boolean             false                           Whether to clear the output directory before generating new files (removing all files and recursively removing all subdirectories in the output directory)
+outputPath                             string              ""                                     Output path for generated files, relative to the project folder.
 
-createIndexFile                        boolean             false                           Whether to generate an index (barrel) file in the root TypeScript output directory. Index exports everything from all generated TypeScript files.
+clearOutputDirectory                   boolean             false                                  Whether to clear the output directory before generating new files (removing all files and recursively removing all subdirectories in the output directory)
 
-csNullableTranslation                  string              ""                              Determines which strict-null-checking type unions will be added to C# nullable property types by default. Possible values: "null", "undefined", "null|undefined" or "".
+**(DEPR.)** createIndexFile            boolean             false                                  Whether to generate an index (barrel) file in the root TypeScript output directory. Index exports everything from all generated TypeScript files.
 
-defaultValuesForTypes                  Object              null                            Object containing a map of default values for the specified TypeScript types (example below)
+csNullableTranslation                  string              ""                                     Determines which strict-null-checking type unions will be added to C# nullable property types by default. Possible values: "null", "undefined", "null|undefined" or "".
 
-customTypeMappings                     Object              null                            Object containing a map of custom [C# to TypeScript] type mappings (example below)
+defaultValuesForTypes                  Object              null                                   Object containing a map of default values for the specified TypeScript types (example below)
 
-generateFromAssemblies                 boolean             null                            Whether to generate files from assemblies specified in `assemblies` parameter. If null, files are generated from assemblies only if no generation specs are specified.
+customTypeMappings                     Object              null                                   Object containing a map of custom [C# to TypeScript] type mappings (example below)
 
-useAttributesWithGenerationSpec        boolean             false                           Whether to read the generation metadata from attributes when generating from a generation spec
+generateFromAssemblies                 boolean             null                                   Whether to generate files from assemblies specified in `assemblies` parameter. If null, files are generated from assemblies only if no generation specs are specified.
 
-enumStringInitializers                 boolean             false                           Whether to use TypeScript enum string initializers by default
+enumStringInitializers                 boolean             false                                  Whether to use TypeScript enum string initializers by default
 
-fileHeading                            string              null                            TypeScript file heading text (default is "(...) This is a TypeGen auto-generated file. (...)")
+fileHeading                            string              null                                   TypeScript file heading text (default is "(...) This is a TypeGen auto-generated file. (...)")
 
-useDefaultExport                       bool                false                           Whether to use TypeScript default exports by default
-====================================== =================== =============================== ===================
+useDefaultExport                       boolean             false                                  Whether to use TypeScript default exports by default
+
+buildProject                           boolean             false                                  Whether to build the project before performing file generation
+====================================== =================== ====================================== ===================
 
 (*) The rules for specifying class names are as follows:
 
-* Names of converter/generation spec classes can be specified with or without the *Converter*/*GenerationSpec* suffix.
-
 * Class names can be specified as a name or a fully qualified name.
 
-* If only the name of a class is specified, the class will first be searched in the project's assembly and then (if not found) in *TypeGen.Core*.
+* If only the name of a class is specified, the class will first be searched in the assemblies specified in *assemblies* (or the project's assembly if no assemblies are specified) and then (if not found) in *TypeGen.Core*.
 
 * To read a class from a specific assembly, path can be defined in the following format: *assembly/path/assembly.dll:ClassName*, where assembly path is relative to the project's folder.
 

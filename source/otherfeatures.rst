@@ -77,18 +77,10 @@ Adding files to a .NET framework project
 
 This feature is only available in TypeGen CLI (not available in programmatical API, as the programmatical API doesn't operate on a per-project level). When this option is selected, generated TS sources will automatically be added to a .NET Framework project in the chosen project folder. This feature is only available for .NET Framework projects (not .NET Core), because .NET Core projects don't specify included files in the project file.
 
-Creating TypeScript index file
-==============================
+Creating TypeScript barrel files
+================================
 
-An index file is a TypeScript file in the root TypeScript files directory, containing exports of all TypeScript types in the root directory and its subdirectories. TypeGen allows for generating an index file when generating TS files either from an assembly or a generation spec. A generated index file may look like this:
-
-.. code-block:: typescript
-
-    export * from './foo';
-    export * from './bar';
-    export * from './baz';
-    export * from './foo-bar';
-    export * from './foo-bar-baz';
+Barrels are created by adding them to a :doc:`generation spec <generationspec>` (please visit the generation spec section for the details on how to add barrels). There is also a possibility to add a "global" barrel file by enabling the *createIndexFile* config option, however this option offers very limited functionality; also it's deprecated and will be removed in the future.
 
 Default values for TS properties based on the type
 ==================================================

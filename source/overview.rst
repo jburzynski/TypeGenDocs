@@ -107,7 +107,7 @@ Let's say you have a *ProductDto* class that you want to export to TypeScript.
         "generationSpecs": ["MyGenerationSpec"]
     }
 
-After finishing instructions described in either 1. or 2., **build your project** and type :code:`TypeGen generate` or :code:`TypeGen -p "MyProjectName" generate` (depending on the current working directory of the PM Console) into the Package Manager Console (you might have to restart Visual Studio). Instead of using the Package Manager Console, you can also use TypeGen as a .NET CLI tool by typing :code:`dotnet typegen generate` in your OS command line shell.
+After finishing instructions described in either 1. or 2., **build your project** and type :code:`TypeGen generate` or :code:`TypeGen -p "MyProjectName" generate` (depending on the current working directory of the PM Console) into the Package Manager Console (you might have to restart Visual Studio). Instead of using the Package Manager Console, you can also use TypeGen as a .NET CLI tool by typing :code:`dotnet typegen generate` in your OS shell.
 
 Performing the steps described above will generate a single TypeScript file (named *product-dto.ts*) in your project directory. The file will look like this:
 
