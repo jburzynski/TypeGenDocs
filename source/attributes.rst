@@ -7,7 +7,7 @@ Using attributes is one of the two ways of selecting C# types to be generates as
 Attributes have some advantages over generation specs:
 
 - they are simpler and require less overhead
-- for some people they are more readable, as you can see the configuration as you read the class/enum definition
+- for some people they are more readable, as you can see the configuration as you read the type definition
 
 Compared to generation specs they also have some limitations:
 
@@ -21,9 +21,9 @@ ExportTs... attributes
 
 In order to indicate that a given type is to be exported to TypeScript, it needs to be annotated with a *ExportTs...* attribute. The available attributes are:
 
-* *ExportTsClassAttribute* (used on classes)
-* *ExportTsInterfaceAttribute* (used on classes)
-* *ExportTsEnumAttribute* (used on enums)
+* *ExportTsClassAttribute*
+* *ExportTsInterfaceAttribute*
+* *ExportTsEnumAttribute*
 
 Each of the attributes has one property named *OutputDir*, which can be set to indicate the output directory of the generated TypeScript file. The output directory (and all other defined paths) are resolved relatively to the generator's base output directory (*ProjectFolder* parameter in CLI).
 
@@ -42,7 +42,7 @@ In this case, *MyClass* (by default) will be exported to *my/sources/my-class.ts
 TsDefaultValueAttribute
 =======================
 
-To indicate a default value for a TypeScript property (available only for classes), the *TsDefaultValue* attribute can be used:
+To indicate a default value for a TypeScript property, the *TsDefaultValue* attribute can be used:
 
 .. code-block:: csharp
 

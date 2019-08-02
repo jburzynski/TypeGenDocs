@@ -20,7 +20,6 @@ Contents:
    :maxdepth: 3
 
    overview
-   usingtypegen
    attributes
    generationspec
    whatisgenerated

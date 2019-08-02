@@ -212,12 +212,12 @@ For this code, two TypeScript files will be generated: one for *MyClass* and one
 	    baseField: number;
 	}
 
-Generic classes
-===============
+Generic types
+=============
 
-TypeGen 1.2 introduces TypeScript files generation for custom generic classes.
-Generic types/parameters are allowed in all parts of C# class definition: in class declaration, base class specification and as member types.
-Additionally, generic type constraint (specified in *where*) will also be exported to TypeScript (**note**: *new()* and *class* specifiers will not be exported).
+TypeGen 1.2 introduces TypeScript files generation for custom generic types.
+Both generic type definitions and generic types (i.e. types with filled parameters) are exported to TypeScript.
+Additionally, generic type constraints (specified in *where*) will also be exported to TypeScript (**note**: *new()* and *class* constraints will not be exported).
 
 Example:
 

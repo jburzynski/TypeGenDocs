@@ -39,7 +39,7 @@ Main TypeGen's features include:
 * generating TypeScript classes, interfaces and enums - single class per file
 * generating barrel (index) files
 * support for collection (or nested collection) property types
-* generic classes/types generation
+* generic types generation
 * support for inheritance
 * customizable convertion between C#/TypeScript names (naming conventions)
 

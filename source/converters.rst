@@ -31,7 +31,7 @@ Writing your own converter - example
 Type name and name converter
 ----------------------------
 
-Let's say you want the generated TypeScript files' names to be *kebab-case*, but without the trailing *DTO*, as your C# classes have (let's say you have e.g. a C# class called *ProductDTO*).
+Let's say you want the generated TypeScript files' names to be *kebab-case*, but without the trailing *DTO*, which is present in your C# class names (let's say you have e.g. a C# class called *ProductDTO*).
 
 One way to do this is to combine the natively available *PascalCaseToKebabCase* converter with some custom converter that strips the *DTO* suffix from the C# class name (if the class name ends with *DTO*). Such converter could be implemented as both *name* converter and *type name* converter, since it doesn't depend on the generated type (it could be reused e.g. for property names conversion).
 
