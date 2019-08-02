@@ -58,7 +58,7 @@ To indicate a default value for a TypeScript property, the *TsDefaultValue* attr
 
 The parameter passed in *TsDefaultValue*'s constructor is a string, which is directly copied to the TypeScript file as a default value for a property. Therefore, default values for string properties have to be wrapped with *"* (double quote) or *'* (single quote) characters, in order to generate a valid TypeScript file.
 
-**Feature for versions >= 2.0.0:** If you want to specify default values to be generated for all members with a given TypeScript type, you can do so by using the *defaultValuesForTypes* option in the CLI or *GeneratorOptions.DefaultValuesForTypes* in the programmatical API.
+**Feature for versions >= 2.0.0:** If you want to specify default values to be generated for all members with a given TypeScript type, you can do so by using the *defaultValuesForTypes* config option.
 
 TsIgnoreAttribute
 =================
@@ -129,7 +129,7 @@ TsDefaultTypeOutputAttribute
 ============================
 
 Since TypeGen 1.2, there is an option to specify a default output path for a member's type, which will be used if no *ExportTs...* attribute is present for this type.
-The path is relative to the project's folder (when using CLI) or generator's base directory (when generating programmatically).
+The path is relative to the global TypeScript output directory.
 
 .. code-block:: csharp
 
@@ -248,7 +248,7 @@ generated TypeScript (MyBase is not generated if it doesn't have an *ExportTs...
 TsDefaultExportAttribute
 ========================
 
-Used to specify if the generated TypeScript type should use a default export. There is also a possibility to enable default exports globally in the CLI (*useDefaultExport* parameter) or in the generator options (*GeneratorOptions.UseDefaultExport*).
+Used to specify if the generated TypeScript type should use a default export. There is also a possibility to enable default exports globally by using the *useDefaultExport* config parameter.
 
 Opt-in:
 
@@ -292,7 +292,7 @@ translates to:
 TsStringInitializersAttribute
 =============================
 
-Used to specify if TypeScript string initializers should be used for an enum. There is also a possibility to enable enum string initializers globally in the CLI (*enumStringInitializers* parameter) or in the generator options (*GeneratorOptions.EnumStringInitializers*).
+Used to specify if TypeScript string initializers should be used for an enum. There is also a possibility to enable enum string initializers globally using the *enumStringInitializers* config parameter.
 
 Opt-in:
 
@@ -351,7 +351,7 @@ If string initializers are enabled, the above opt-in example will produce the fo
 	    B = "B"
 	}
 	
-To specify custom logic for changing (converting) a C# enum value name to an enum initializer string, you can specify enum string initializers converters in the CLI (*enumStringInitializersConverters* parameter) or in the generator options (*GeneratorOptions.EnumStringInitializersConverters*).
+To specify custom logic for changing (converting) a C# enum value name to an enum initializer string, you can specify enum string initializers converters in the *enumStringInitializersConverters* config parameter.
 
 TsStatic, TsNotStatic attributes
 ================================

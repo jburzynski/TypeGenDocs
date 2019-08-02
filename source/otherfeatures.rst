@@ -63,19 +63,14 @@ Multiple code fragments can be tagged with *<custom-head>* or *<custom-body>* as
 Strict null checking
 ====================
 
-You can specify how C# nullable property/field types will be translated to TypeScript by default, by using the *csNullableTranslation* parameter (CLI or generator options). Available choices are:
+You can specify how C# nullable property/field types will be translated to TypeScript by default, by using the *csNullableTranslation* config parameter.
 
-* type | null
-* type | undefined
-* type | null | undefined
-* type (not null and not undefined)
-
-To override the default C# nullable types translation or to specify a type union for non-nullable types, you can use the following attributes on a property or field: *TsNull*, *TsNotNull*, *TsUndefined*, *TsNotUndefined* (you can find more information on these attributes in the *TypeGen attributes* section).
+To override the default C# nullable types translation or to specify a type union for non-nullable types, you can use the following attributes on a property or field: *TsNull*, *TsNotNull*, *TsUndefined*, *TsNotUndefined* (you can find more information on these attributes in the :doc:`TypeGen attributes <attributes>` section).
 
 Adding files to a .NET framework project
 ========================================
 
-This feature is only available in TypeGen CLI (not available in programmatical API, as the programmatical API doesn't operate on a per-project level). When this option is selected, generated TS sources will automatically be added to a .NET Framework project in the chosen project folder. This feature is only available for .NET Framework projects (not .NET Core), because .NET Core projects don't specify included files in the project file.
+When this option is selected, generated TS sources will automatically be added to a .NET Framework project in the chosen project folder. This feature is only available for .NET Framework projects (not .NET Core), because .NET Core projects don't specify included files in the project file.
 
 Creating TypeScript barrel files
 ================================
@@ -85,14 +80,14 @@ Barrels are created by adding them to a :doc:`generation spec <generationspec>` 
 Default values for TS properties based on the type
 ==================================================
 
-It is possible to generate default values for properties inside TS classes/interfaces, depending on the property type. The [TS type -> default value] mappings can be specified either in the *defaultValuesForTypes* CLI parameter or in the *GeneratorOptions.DefaultValuesForTypes* property.
+It is possible to generate default values for properties inside TS classes/interfaces, depending on the property type. The [TS type -> default value] mappings can be specified in the *defaultValuesForTypes* config parameter.
 
 Custom type mappings
 ====================
 
-TypeGen allows to override its default C# to TS type mappings or create new custom mappings. The way to define mappings is via either the *customTypeMappings* CLI parameter or the *GeneratorOptions.CustomTypeMappings* property.
+TypeGen allows to override its default C# to TS type mappings or create new custom mappings. The way to define mappings is via the *customTypeMappings* config parameter.
 
 Default exports
 ===============
 
-There is a possibility to use default exports instead of named exports when generating TypeScript types. This feature can be enabled/disabled globally, by setting the *useDefaultExport* CLI parameter or the *GeneratorOptions.UseDefaultExport* property, or a one-time opt-in/out can be used with either the `TsDefaultExportAttribute` or the `DefaultExport(bool)` generation spec method.
+There is a possibility to use default exports instead of named exports when generating TypeScript types. This feature can be enabled/disabled globally, by setting the *useDefaultExport* config parameter. A one-time opt-in/out can be used with `TsDefaultExportAttribute` (or its corresponding generation spec method).

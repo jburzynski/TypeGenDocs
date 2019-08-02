@@ -57,10 +57,14 @@ Here's one implementation of such converter:
 	    }
 	}
 
-Now you can create a converter chain that first strips the *DTO* from the C# class name, and later converts the DTO-less name to kebab-case:
+Now you can create a converter chain that first strips the *DTO* from the C# class name, and later converts the DTO-less name to kebab-case, by adding the following configuration to your *tgconfig.json*:
 
-* in CLI: specify *["StripDto", "PascalCaseToKebabCase"]* for the *fileNameConverters* parameter in your *tgconfig.json*
-* programmatically: create a converter chain: *new TypeNameConverterCollection(new StripDtoConverter(), new PascalCaseToKebabCaseConverter())* and pass it in the generator options (*FileNameConverters* property)
+.. code-block:: json
+
+    {
+        "fileNameConverters": ["StripDtoConverter", "PascalCaseToKebabCaseConverter"]
+    }
+
 
 Type name converter
 -------------------
@@ -89,10 +93,13 @@ Let's say you're generating all C# classes as TypeScript interfaces (by annotati
 	    }
 	}
 
-You could then combine it with the *PascalCaseToKebabCase* converter in the following way:
+You could then combine it with the *PascalCaseToKebabCase* converter by adding this section to your *tgconfig.json*:
 
-* in CLI: specify *["PascalCaseToKebabCase", "TypeSuffix"]* for the *fileNameConverters* parameter in your *tgconfig.json*
-* programmatically: create a converter chain: *new TypeNameConverterCollection(new PascalCaseToKebabCaseConverter(), new TypeSuffixConverter())* and pass it in the generator options (*FileNameConverters* property)
+.. code-block:: json
+
+    {
+        "fileNameConverters": ["PascalCaseToKebabCaseConverter", "TypeSuffixConverter"]
+    }
 
 Using converters
 ================
