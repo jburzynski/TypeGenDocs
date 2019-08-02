@@ -48,12 +48,6 @@ Multiple code fragments can be tagged with *<custom-head>* or *<custom-body>* as
 	    //</custom-body>
 	}
 
-**Note:** :code:`//<custom-xyz>` (followed by a new line) is the only acceptable format of a tag. The following will not work:
-
-* :code:`// <custom-xyz>`
-* :code:`//<custom-xyz >`
-* :code:`//<custom-xyz> some comments after this`
-
 *<custom-head>* and *<custom-body>* tags are case-insensitive, so e.g. :code:`<CUSTOM-HEAD>` is also acceptable.
 
 **Deprecation note:**
