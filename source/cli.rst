@@ -104,7 +104,7 @@ outputPath                             string              ""                   
 
 clearOutputDirectory                   boolean             false                                  Whether to clear the output directory before generating new files (removing all files and recursively removing all subdirectories in the output directory)
 
-**(DEPR.)** createIndexFile            boolean             false                                  Whether to generate an index (barrel) file in the root TypeScript output directory. Index exports everything from all generated TypeScript files.
+**(DEPR.)** createIndexFile            boolean             false                                  Whether to generate an index (barrel) file in the root TypeScript output directory. The generated barrel file exports everything from all generated TypeScript files. This option should be avoided in favor of generating barrels from generation specs.
 
 csNullableTranslation                  string              ""                                     Determines which strict-null-checking type unions will be added to C# nullable property types by default. Possible values: "null", "undefined", "null|undefined" or "".
 
