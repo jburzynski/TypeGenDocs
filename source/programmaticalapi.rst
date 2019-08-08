@@ -23,7 +23,7 @@ There is currently one event in the *Generator* class you can subscribe to - the
 * *FilePath : string* - the generated file's path
 * *FileContent : string* - the generated file content
 
-The default handler for this event, added in the *Generator*'s constructor, saves the generated file content to the file system. There is a possibility to unsubscribe the default event handler (by using the *Generator.UnsubscribeDefaultFileContentGeneratedHandler()* method), which will cause the generated file content to not be saved in the file system. You can also re-subscribe the default handler by using the *Generator.SubscribeDefaultFileContentGeneratedHandler()* method.
+The default handler for this event saves the generated file content to the file system. There is a possibility to unsubscribe the default event handler (by using the *Generator.UnsubscribeDefaultFileContentGeneratedHandler()* method), which will cause the generated file content to not be saved in the file system. You can also re-subscribe the default handler by using the *Generator.SubscribeDefaultFileContentGeneratedHandler()* method.
 
 Logging
 -------
