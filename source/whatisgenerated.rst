@@ -47,7 +47,7 @@ A default value for a TypeScript property will be generated in any of the follow
 
 * The C# property/field is annotated with the *TsDefaultValue* attribute
 * The C# property/field has a non-default value
-* A default value is specified for the generated property's type in either the *defaultValuesForTypes* config parameter
+* A default value is specified for the generated property's type in either the *defaultValuesForTypes* CLI parameter or the *GeneratorOptions.DefaultValuesForTypes* property
 
 The order of checking for a default value to use is the same as listed above (first *TsDefaultValueAttribute*, then the member's value, then default value for a TS type).
 
@@ -66,7 +66,7 @@ Property/field types that can be represented by TypeScript primitive types will 
 Additionally, any type that implements the *IDictionary* interface (or the *IDictionary* interface itself) will be mapped to TypeScript dictionary type.
 For example, *Dictionary<int, string>* will be mapped to *{ [key: number]: string; }*.
 
-There is an option to override the default mappings or create new [C# to TypeScript] type mappings by using the *customTypeMappings* config option.
+There is an option to override the default mappings or create new [C# to TypeScript] type mappings by using the *customTypeMappings* option in the CLI or *GeneratorOptions.CustomTypeMappings* in the programmatical API.
 
 Complex property/field types
 ============================
