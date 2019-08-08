@@ -12,14 +12,7 @@ After installing TypeGen as a `NuGet package <https://www.nuget.org/packages/Typ
 Generator.Generate()
 --------------------
 
-To generate TypeScript files, the *Generate()* method is used. This method has 4 overloads:
-
-* *Generate(GenerationSpec generationSpec)*
-* *Generate(IEnumerable<Assembly> assemblies)*
-* *Generate(Assembly assembly)*
-* *Generate(Type type)*
-
-All overloads except for *Generate(GenerationSpec)* generate TypeScript files based on the used attributes (from the *TypeGen.Core.TypeAnnotations* namespace). The *Generate(GenerationSpec)* takes all information from the generation spec and ignores any attributes by default. It's also possible to include the information defined in attributes when generating from a generation spec, by enabling the *useAttributesWithGenerationSpec* CLI parameter or the *GeneratorOptions.UseAttributesWithGenerationSpec* property.
+To generate TypeScript files, the *Generate()* method is used. All its overloads except for *Generate(GenerationSpec)* generate TypeScript files based on the used attributes (from the *TypeGen.Core.TypeAnnotations* namespace). The *Generate(GenerationSpec)* takes all information from the generation spec and ignores any attributes by default.
 
 Events
 ------
