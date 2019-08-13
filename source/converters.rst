@@ -4,9 +4,9 @@ Converters
 
 Converters allow for converting C# names to TypeScript names, by defining conversion rules between naming conventions.
 
-A Converter is a class that defines logic for switching from one naming convention to another. There are 2 types of converters in TypeGen: *name converters* and *type name converters*. The only difference between the two is that *type name converters* can convert names depending on the C# type being generated. All *name converters* implement the *INameConverter* interface, and all *type name converters* implement *ITypeNameConverter*.
+A Converter is a class that defines logic for switching from one naming convention to another. There are 2 types of converters in TypeGen: *member name converters* and *type name converters*. *Type name converters* can convert names depending on the currently generated C# type (Type instance) and *member name converters* can convert names depending on the currently generated C# member (MemberInfo instance). All *member name converters* implement the *IMemberNameConverter* interface, and all *type name converters* implement *ITypeNameConverter*.
 
-All converters available out-of-the-box in TypeGen are both *name converters* and *type name converters* (implement both interfaces). The natively available converters are:
+All converters available out-of-the-box in TypeGen are both *member name converters* and *type name converters* (implement both interfaces). The natively available converters are:
 
 * *PascalCaseToCamelCaseConverter* - converts PascalCase names to camelCase names
 * *PascalCaseToKebabCaseConverter* - converts PascalCase names to kebab-case names
@@ -16,7 +16,7 @@ All converters available out-of-the-box in TypeGen are both *name converters* an
 Converter collections
 =====================
 
-Converter collections (or chains) are used in TypeGen to perform a conversion between naming conventions. There are 2 types of converter collections: *name converter collection* (for *name converters*) and *type name converter collection* (for *type name converters*). A converter collection defines a chain of converters that will be used to convert names.
+Converter collections (or chains) are used in TypeGen to perform a conversion between naming conventions. There are 2 types of converter collections: *member name converter collection* (for *member name converters*) and *type name converter collection* (for *type name converters*). A converter collection defines a chain of converters that will be used to convert names.
 
 For example, a converter collection containing two converters (in this order): **UnderscoreCaseToPascalCaseConverter** and **StripDtoConverter** (which removes the "Dto" suffix), will convert the name **MY_CLASS_DTO** in the following way:
 
@@ -28,20 +28,20 @@ Therefore, this particular converter collection will convert a name **MY_CLASS_D
 Writing your own converter - example
 ====================================
 
-Type name and name converter
-----------------------------
+Type name and member name converter
+-----------------------------------
 
 Let's say you want the generated TypeScript files' names to be *kebab-case*, but without the trailing *DTO*, which is present in your C# class names (let's say you have e.g. a C# class called *ProductDTO*).
 
-One way to do this is to combine the natively available *PascalCaseToKebabCase* converter with some custom converter that strips the *DTO* suffix from the C# class name (if the class name ends with *DTO*). Such converter could be implemented as both *name* converter and *type name* converter, since it doesn't depend on the generated type (it could be reused e.g. for property names conversion).
+One way to do this is to combine the natively available *PascalCaseToKebabCase* converter with some custom converter that strips the *DTO* suffix from the C# class name (if the class name ends with *DTO*). Such converter could be implemented as both *member name* converter and *type name* converter, since it doesn't depend on the generated type (it could be reused for property name conversion).
 
 Here's one implementation of such converter:
 
 .. code-block:: csharp
 
-	public class StripDtoConverter : INameConverter, ITypeNameConverter
+	public class StripDtoConverter : IMemberNameConverter, ITypeNameConverter
 	{
-	    public string Convert(string name)
+	    public string Convert(string name, MemberInfo memberInfo)
 	    {
 	        return ConvertName(name);
 	    }
