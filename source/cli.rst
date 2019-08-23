@@ -160,6 +160,6 @@ An example of a configuration file (*tgconfig.json*) is presented below:
 	    },
 	    "typeUnionsForTypes": {
 	        "string": ["null", "undefined"],
-		    "Date": ["string"]
+	        "Date": ["string"]
 	    }
 	}
