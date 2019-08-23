@@ -23,7 +23,7 @@ Generation spec is a class that specifies which types should be generated to Typ
 
 It is possible to express everything that can be written with :doc:`attributes <attributes>` using generation specs, because each attribute has an equivalent in the generation spec configuration. For example, an equivalent of :code:`[TsTypeAttribute(TsType.String)]` would e.g. be :code:`AddClass<...>().Member("MemberName").Type(TsType.String)`.
 
-To perform file generation from one or more generation specs, their class names need to be passed to the *generationSpecs* :doc:`config option <cli>`.
+To perform file generation from one or more generation specs, their class names should be passed to the *generationSpecs* :doc:`config option <cli>`.
 
 If any generation specs are present in the *generationSpecs* config option, TypeGen will perform file generation **only** from generation specs (i.e. not from attributes in the specified assemblies). To perform file generation from both attributes (in the specified assemblies) and generation specs, you can use the *generateFromAssemblies* config option.
 
