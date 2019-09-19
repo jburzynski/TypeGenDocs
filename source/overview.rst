@@ -14,7 +14,7 @@ For .NET Standard compatibility, see `compatibility table <https://docs.microsof
 
 **Versions >= 2.0.0**
 
-* CLI: .NET Core 2.1
+* CLI: .NET Core 2.1+ (.NET Core version for the CLI is updated whenever a new version of .NET Core is released)
 * TypeGen.Core: .NET Standard versions: 1.3 and 2.0
 
 **Versions 1.5.7 - 1.6.7**
