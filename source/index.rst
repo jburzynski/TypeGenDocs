@@ -20,13 +20,13 @@ Contents:
    :maxdepth: 3
 
    overview
+   whatisgenerated
    attributes
    generationspec
-   whatisgenerated
-   converters
-   otherfeatures
    cli
    programmaticalapi
+   converters
+   otherfeatures
    API Reference <http://jburzynski.net/TypeGen/api-reference/api>
    troubleshooting
    legal
