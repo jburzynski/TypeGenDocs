@@ -16,7 +16,7 @@ The TypeGen Command Line Interface (CLI) can be used either from the Package Man
     There is a known issue with using TypeGen from Package Manager Console with ASP.NET Core projects, **under Visual Studio 2015**: Package Manager Console doesn't see TypeGen.ps1. If this happens to you, you can copy TypeGen.ps1 from your NuGet packages folder to your solution/project directory and use it from PowerShell or CMD. Alternatively, you may also consider using `TypeGen .NET CLI tool <https://www.nuget.org/packages/TypeGen.DotNetCli>`_ instead of TypeGen Package Manager Console tool.
 
 
-After running the *[dotnet ]typegen* command, the following set of actions is performed for each of the specified project folders:
+After running the *[dotnet-]typegen* command, the following set of actions is performed for each of the specified project folders:
 
 #. The CLI reads the assembly file (.dll or .exe). By default (if no assembly path is specified in the config), the assembly file is searched recursively in the project folder's *bin* directory. The name of the assembly must match the name of the .csproj or .xproj file present in the project folder.
 
