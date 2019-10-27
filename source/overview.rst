@@ -14,7 +14,9 @@ For .NET Standard compatibility, see `compatibility table <https://docs.microsof
 
 **Versions >= 2.0.0**
 
-* CLI: .NET Core 2.1+ (.NET Core version for the CLI is updated whenever a new version of .NET Core is released)
+* Package Manager Console TypeGen CLI: the latest version of .NET Core
+* TypeGen.DotNetCli NuGet package: the latest version of .NET Core
+* dotnet-typegen NuGet package: multiple .NET Core versions are supported: from .NET Core 2.1 to the latest version of .NET Core
 * TypeGen.Core: .NET Standard versions: 1.3 and 2.0
 
 **Versions 1.5.7 - 1.6.7**
