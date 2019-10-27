@@ -11,7 +11,7 @@ TypeGen is a single-class-per-file C# to TypeScript generator.
 Use:
 
 * Download from `NuGet <https://www.nuget.org/packages/TypeGen>`_
-* Use as .NET CLI tool (`NuGet package <https://www.nuget.org/packages/TypeGen.DotNetCli>`_)
+* Use as .NET CLI tool (`NuGet package <https://www.nuget.org/packages/dotnet-typegen>`_)
 * Browse the `source code <https://github.com/jburzynski/TypeGen>`_
 
 Contents:

@@ -2,7 +2,7 @@
 Command Line Interface
 ======================
 
-The TypeGen Command Line Interface (CLI) can be used either from the Package Manager Console, after installing TypeGen `NuGet package <https://www.nuget.org/packages/TypeGen>`_, or as a `.NET CLI tool <https://www.nuget.org/packages/TypeGen.DotNetCli>`_.
+The TypeGen Command Line Interface (CLI) can be used either from the Package Manager Console, after installing TypeGen `NuGet package <https://www.nuget.org/packages/TypeGen>`_, or as a `.NET CLI tool <https://www.nuget.org/packages/dotnet-typegen>`_.
 
 .. container:: Note
 
@@ -13,7 +13,7 @@ The TypeGen Command Line Interface (CLI) can be used either from the Package Man
 
     **Note: This issue has been resolved in Visual Studio 2017 RC**
 	
-    There is a known issue with using TypeGen from Package Manager Console with ASP.NET Core projects, **under Visual Studio 2015**: Package Manager Console doesn't see TypeGen.ps1. If this happens to you, you can copy TypeGen.ps1 from your NuGet packages folder to your solution/project directory and use it from PowerShell or CMD. Alternatively, you may also consider using `TypeGen .NET CLI tool <https://www.nuget.org/packages/TypeGen.DotNetCli>`_ instead of TypeGen Package Manager Console tool.
+    There is a known issue with using TypeGen from Package Manager Console with ASP.NET Core projects, **under Visual Studio 2015**: Package Manager Console doesn't see TypeGen.ps1. If this happens to you, you can copy TypeGen.ps1 from your NuGet packages folder to your solution/project directory and use it from PowerShell or CMD. Alternatively, you may also consider using `TypeGen .NET CLI tool <https://www.nuget.org/packages/dotnet-typegen>`_ instead of TypeGen Package Manager Console tool.
 
 
 After running the *[dotnet-]typegen* command, the following set of actions is performed for each of the specified project folders:

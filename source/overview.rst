@@ -43,7 +43,7 @@ Installing TypeGen
 
 To install TypeGen, add the `TypeGen NuGet package <https://www.nuget.org/packages/TypeGen>`_ to your project. After adding this package, the :code:`TypeGen` command will be available in the Package Manager console.
 
-You can also use TypeGen as a .NET Core CLI tool, in which case you should install it from `this package <https://nuget.org/packages/TypeGen.DotNetCli>`_.
+You can also use TypeGen as a .NET Core CLI tool, in which case you should install it from `this package <https://nuget.org/packages/dotnet-typegen>`_.
 
 Selecting C# types to generate
 ------------------------------
