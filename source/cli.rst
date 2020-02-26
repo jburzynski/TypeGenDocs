@@ -6,7 +6,7 @@ The TypeGen Command Line Interface (CLI) can be used either from the Package Man
 
 .. container:: Note
 
-    Due to how Package Manager Console works in Visual Studio, you may need to **restart Visual Studio** before you can start using TypeGen in the Package Manager Console
+    You may need to **restart Visual Studio** before you can start using TypeGen in the Package Manager Console
 
 
 .. container:: Note
