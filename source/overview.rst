@@ -14,20 +14,19 @@ For .NET Standard compatibility, see `compatibility table <https://docs.microsof
 
 **Versions >= 2.0.0**
 
-* Package Manager Console TypeGen CLI: the latest version of .NET Core
-* TypeGen.DotNetCli NuGet package: the latest version of .NET Core
-* dotnet-typegen NuGet package: multiple .NET Core versions are supported: from .NET Core 2.1 to the latest version of .NET Core
-* TypeGen.Core: .NET Standard versions: 1.3 and 2.0
+* CLI (when used from Package Manager console): .NET Core 3.1
+* CLI (when used as a .NET Core CLI tool): .NET Core 2.1, .NET Core 2.2, .NET Core 3.0, .NET Core 3.1
+* Programmatical API: .NET Standard 1.3, .NET Standard 2.0
 
 **Versions 1.5.7 - 1.6.7**
 
 * CLI: .NET Core 2.0
-* TypeGen.Core: .NET Standard versions: 1.3 and 2.0
+* Programmatical API: .NET Standard versions: 1.3 and 2.0
 
 **Versions 1.5.0 - 1.5.6**
 
 * CLI: .NET Framework 4.6
-* TypeGen.Core: .NET Standard 1.3
+* Programmatical API: .NET Standard 1.3
 
 **Versions <= 1.4.x**
 
