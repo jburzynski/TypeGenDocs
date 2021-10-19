@@ -45,6 +45,6 @@ An example of programmatical usage is shown below:
 .. code-block:: csharp
 
 	var options = new GeneratorOptions { BaseOutputDirectory = @"C:\my\output" }; // create the options object
-	var generator = new Generator { Options = options }; // create the generator instance
+	var generator = new Generator(options); // create the generator instance
 	var assembly = Assembly.GetCallingAssembly(); // get the assembly to generate files for
 	generator.Generate(assembly); // generates the files
