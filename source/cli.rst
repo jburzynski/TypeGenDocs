@@ -84,6 +84,8 @@ clearOutputDirectory                   boolean             false                
 
 csNullableTranslation                  string              ""                                     Determines which strict-null-checking type unions will be added to C# nullable property types by default. Possible values: "null", "undefined", "null|undefined" or "".
 
+csAllowNullsForAllTypes                boolean             null                                   Specifies whether null union types should be added for all types
+
 customTypeMappings                     Object              {}                                     Object containing a map of custom [C# to TypeScript] type mappings (example below)
 
 defaultValuesForTypes                  Object              {}                                     Object containing a map of default values for the specified TypeScript types (example below)
