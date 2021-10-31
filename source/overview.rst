@@ -12,7 +12,12 @@ Requirements
 
 For .NET Standard compatibility, see `compatibility table <https://docs.microsoft.com/en-us/dotnet/articles/standard/library>`_.
 
-**Versions >= 2.0.0**
+**Versions >= 2.5.0**
+
+* CLI: .NET 5.0
+* TypeGen.Core (and programmatical API): .NET Standard 2.0, .NET 5.0
+
+**Versions 2.0.0 - 2.4.9**
 
 * CLI (when used from Package Manager console): .NET Core 3.1
 * CLI (when used as a .NET Core CLI tool): .NET Core 2.1, .NET Core 2.2, .NET Core 3.0, .NET Core 3.1
@@ -32,14 +37,13 @@ For .NET Standard compatibility, see `compatibility table <https://docs.microsof
 
 .NET Framework 4.0
 
-How to use it
+Getting started
 =============
 
-The general idea is: first you select C# types to be generated to TypeScript, then you run the :code:`typegen` command and the TypeScript files are generated.
+The main idea of how TypeGen works is: first C# types to be converted to TypeScript are selected, and then TypeGen (command line or programmatical API) is used to generate TypeScript source files for the selected types.
+By default the generated source files are saved to the file system, but this can be customised using the programmatical API (see the :doc:`Programmatical API section <programmaticalapi>`).
 
-The details are covered in the following subsections.
-
-Installing TypeGen
+Installation
 ------------------
 
 To install TypeGen, add the `TypeGen NuGet package <https://www.nuget.org/packages/TypeGen>`_ to your project. After adding this package, the :code:`TypeGen` command will be available in the Package Manager console.
