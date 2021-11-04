@@ -38,13 +38,13 @@ For .NET Standard compatibility, see `compatibility table <https://docs.microsof
 .NET Framework 4.0
 
 Getting started
-=============
+===============
 
 The main idea of how TypeGen works is: first C# types to be converted to TypeScript are selected, and then TypeGen (command line or programmatical API) is used to generate TypeScript source files for the selected types.
 By default the generated source files are saved to the file system, but this can be customised using the programmatical API (see the :doc:`Programmatical API section <programmaticalapi>`).
 
 Installation
-------------------
+------------
 
 To install TypeGen, add the `TypeGen NuGet package <https://www.nuget.org/packages/TypeGen>`_ to your project. After adding this package, the :code:`TypeGen` command will be available in the Package Manager console.
 
