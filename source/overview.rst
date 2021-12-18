@@ -40,7 +40,7 @@ For .NET Standard compatibility, see `compatibility table <https://docs.microsof
 Getting started
 ===============
 
-To generate the sources, first the C# types to translate should be selected, and then the TypeGen command should be run.
+To generate the sources, first the C# types to translate should be selected, and then the TypeGen command should be run to create the TypeScript files.
 By default the generated source files are saved to the file system, but this can be customised using the programmatical API (see the :doc:`Programmatical API section <programmaticalapi>`).
 
 Installation
