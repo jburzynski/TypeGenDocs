@@ -2,20 +2,6 @@
 TypeGen attributes
 ==================
 
-Using attributes is one of the two ways of selecting C# types to be generates as TypeScript sources (the other one being :doc:`generation spec <generationspec>`).
-
-Attributes have some advantages over generation specs:
-
-- they are simpler and require less overhead
-- for some people they are more readable, as you can see the configuration as you read the type definition
-
-Compared to generation specs they also have some limitations:
-
-- configuration is tied to a type - you can only have a single configuration for a given type
-- you can only generate types that you wrote - i.e. you cannot generate types from external assemblies
-
-Typical use case for using attributes is smaller projects or projects without complex file generation logic.
-
 ExportTs... attributes
 ======================
 

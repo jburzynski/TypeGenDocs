@@ -2,7 +2,7 @@
 Programmatical API
 ==================
 
-If the :doc:`Command Line Interface <cli>` doesn't meet your requirements, or you just want to generate TypeScript files from the code level, you can use the TypeGen file generator class, located in TypeGen.Core assembly.
+If the :doc:`Command Line Interface <cli>` doesn't meet your requirements, or you just want to generate TypeScript files from the code level, you can use the programmatical API located in TypeGen.Core assembly.
 
 The Generator class
 ===================

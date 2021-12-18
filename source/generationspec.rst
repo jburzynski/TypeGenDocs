@@ -2,20 +2,10 @@
 Generation spec
 ===============
 
-Generation spec is one of the two ways of selecting C# types to be generates as TypeScript sources (the other one being :doc:`attributes <attributes>`).
-
-Using a generation spec has a few advantages over attributes:
-
-- you can generate types from external assemblies
-- configuration is not tied up to a type - you can make different configurations for the same type in different generation specs
-- you can create reusable configurations and combine them together
-
-Using generation specs is typically good for bigger projects or projects with more complex file generation logic.
-
 Overview
 ========
 
-Generation spec is a class that specifies which types should be generated to TypeScript and how barrels (if any) should be generated. All generation specs must derive from *TypeGen.Core.SpecGeneration.GenerationSpec*. Inside a generation spec, it is possible to select types for generation or add barrels by invoking *AddClass*, *AddInterface*, *AddEnum* or *AddBarrel* methods in 3 different places:
+Generation spec is a C# class which acts as a configuration file to select which types should be exported to TypeScript and how barrels (if any) should be generated. All generation specs must derive from *TypeGen.Core.SpecGeneration.GenerationSpec*. Inside a generation spec, it is possible to select types for generation or add barrels by invoking *AddClass*, *AddInterface*, *AddEnum* or *AddBarrel* methods in 3 different places:
 
 * **OnBeforeGeneration method** - a virtual method invoked before files are generated. It's advised to add all C# types to generate in this method, as it exposes the currently used *GeneratorOptions* instance (available through *OnBeforeGenerationArgs*), which can be helpful in specifying additional logic based on the currently used generation options. This is not the optimal place to put *AddBarrel* calls, as the directory structure for TypeScript sources may not yet have been created in the file system.
 * **OnBeforeBarrelGeneration method** - a virtual method invoked after C# types are translated and saved to TypeScript files, but before any barrels are generated. This is the place to put any *AddBarrel* method calls. Because *OnBeforeBarrelGeneration* is invoked after TypeScript types are saved in the file system, it's possible to add barrel files based on the directory structure of the generated TypeScript files (*GeneratorOptions.BaseOutputDirectory* can be used to access the "global" output directory for the generated TypeScript sources).
@@ -77,7 +67,7 @@ Examples
             AddBarrel(".", BarrelScope.Files | BarrelScope.Directories); // equivalent to AddBarrel("."); adds one barrel file in the global TypeScript output directory containing all files and directories from that directory
 		
 		
-            // the following code for each directory creates a barrel file containing all files and directories from that directory
+            // the following code, for each directory, creates a barrel file containing all files and directories from that directory
 		
             IEnumerable<string> directories = GetAllDirectoriesRecursive(args.GeneratorOptions.BaseOutputDirectory)
                 .Select(x => GetPathDiff(args.GeneratorOptions.BaseOutputDirectory, x));
