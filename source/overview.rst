@@ -12,6 +12,11 @@ Requirements
 
 For .NET Standard compatibility, see `compatibility table <https://docs.microsoft.com/en-us/dotnet/articles/standard/library>`_.
 
+**Versions >= 2.5.2**
+
+* CLI: .NET 6.0
+* TypeGen.Core (and programmatical API): .NET Standard 2.0, .NET 6.0
+
 **Versions >= 2.5.0**
 
 * CLI: .NET 5.0
