@@ -90,6 +90,8 @@ customTypeMappings                     Object              {}                   
 
 defaultValuesForTypes                  Object              {}                                     Object containing a map of default values for the specified TypeScript types (example below)
 
+csDefaultValuesForConstantsOnly        boolean             false                                  Whether to generate the property/field default values only for constants
+
 enumStringInitializers                 boolean             false                                  Whether to use TypeScript enum string initializers by default
 
 enumStringInitializersConverters (*)   string[]            []                                     Converter chain used for converting C# enum value names to TypeScript enum string initializers. See the (*) explanation below regarding ways in which class names can be specified.
