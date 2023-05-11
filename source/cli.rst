@@ -82,15 +82,15 @@ clearOutputDirectory                   boolean             false                
 
 **(DEPR.)** createIndexFile            boolean             false                                  Whether to generate an index (barrel) file in the root TypeScript output directory. The generated barrel file exports everything from all generated TypeScript files. This option should be avoided in favor of generating barrels from generation specs.
 
-csNullableTranslation                  string              ""                                     Determines which strict-null-checking type unions will be added to C# nullable property types by default. Possible values: "null", "undefined", "optional", "null|undefined" or "".
-
 csAllowNullsForAllTypes                boolean             null                                   Specifies whether null union types should be added for all types
+
+csDefaultValuesForConstantsOnly        boolean             false                                  Whether to generate the property/field default values only for constants
+
+csNullableTranslation                  string              ""                                     Determines which strict-null-checking type unions will be added to C# nullable property types by default. Possible values: "null", "undefined", "optional", "null|undefined" or "".
 
 customTypeMappings                     Object              {}                                     Object containing a map of custom [C# to TypeScript] type mappings (example below)
 
 defaultValuesForTypes                  Object              {}                                     Object containing a map of default values for the specified TypeScript types (example below)
-
-csDefaultValuesForConstantsOnly        boolean             false                                  Whether to generate the property/field default values only for constants
 
 enumStringInitializers                 boolean             false                                  Whether to use TypeScript enum string initializers by default
 
@@ -111,6 +111,8 @@ generateFromAssemblies                 boolean             null                 
 generationSpecs (*)                    string[]            []                                     An array of generation specs to be used for file generation. See the (*) explanation below regarding ways in which class names can be specified.
 
 outputPath                             string              ""                                     Output path for generated files, relative to the project folder.
+
+projectOutputFolder                    string              "bin"                                  The project's output folder
 
 propertyNameConverters (*)             string[]            ["PascalCaseToCamelCaseConverter"]     Converter chain used for converting C# property/field names to TypeScript property names. See the (*) explanation below regarding ways in which class names can be specified.
 
