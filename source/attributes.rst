@@ -28,7 +28,7 @@ In this case, *MyClass* (by default) will be exported to *my/sources/my-class.ts
 TsCustomBaseAttribute
 =====================
 
-The TsCustomBaseAttribute allows for specifying a custom declaration of the base type. Can be used on classes and interfaces. If no base class is specified, base class declaration will be removed. When TsCustomBaseAttribute is used on a class/interface, its base type will **still be generated**. To avoid base type generation, use TsIgnoreBaseAttribute placed before TsCustomBaseAttribute.
+The TsCustomBaseAttribute allows for specifying a custom declaration of the base type. Can be used on classes and interfaces. If no base type is specified, the base type declaration will be removed. When TsCustomBaseAttribute is used on a class/interface, its base type will **still be generated**. To avoid base type generation, use TsIgnoreBaseAttribute placed before TsCustomBaseAttribute.
 
 .. code-block:: csharp
 
