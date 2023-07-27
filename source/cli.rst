@@ -100,6 +100,8 @@ enumValueNameConverters (*)            string[]            []                   
 
 explicitPublicAccessor                 boolean             false                                  Whether to use explicit *public* accessor in the generated TypeScript class files
 
+exportTypesAsInterfacesByDefault       boolean             false                                  Whether to export types as interfaces by default. For example affects member types which aren't explicitly selected to be generated.
+
 externalAssemblyPaths                  string[]            []                                     An array of paths to external assemblies. These paths are searched (recursively) for any assembly references that cannot be automatically resolved. NuGet package folders (global + machine-wide and project fallback) are searched by default.
 
 fileHeading                            string              null                                   TypeScript file heading text (default is "(...) This is a TypeGen auto-generated file. (...)")
