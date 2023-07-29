@@ -70,35 +70,35 @@ The table below shows all available config parameters, with their default values
 ====================================== =================== ====================================== ===================
 Parameter                              Type                Default value                          Description
 ====================================== =================== ====================================== ===================
-addFilesToProject                      boolean             false                                  **Only for .NET Framework apps (not .NET Core)**. Whether to add the generated TypeScript files to the project file (\*.csproj)
+addFilesToProject                      boolean             false                                  **Only for .NET Framework apps (not .NET Core)**. Whether to add the generated TypeScript files to the project file (\*.csproj).
 
 assemblies                             string[]            []                                     An array of paths to assembly files to generate TypeScript sources from. If null or empty, the default strategy for finding an assembly will be used. **Note:** the order of assemblies also determines the order of reading any custom converters.
 
 **(DEPR.)** assemblyPath               string              null                                   The path to the assembly file with C# types to generate TypeScript sources for. If null or empty, the default strategy for finding an assembly will be used.
 
-buildProject                           boolean             false                                  Whether to build the project before performing file generation
+buildProject                           boolean             false                                  Whether to build the project before performing file generation.
 
-clearOutputDirectory                   boolean             false                                  Whether to clear the output directory before generating new files (removing all files and recursively removing all subdirectories in the output directory)
+clearOutputDirectory                   boolean             false                                  Whether to clear the output directory before generating new files (removing all files and recursively removing all subdirectories in the output directory).
 
 **(DEPR.)** createIndexFile            boolean             false                                  Whether to generate an index (barrel) file in the root TypeScript output directory. The generated barrel file exports everything from all generated TypeScript files. This option should be avoided in favor of generating barrels from generation specs.
 
-csAllowNullsForAllTypes                boolean             null                                   Specifies whether null union types should be added for all types
+csAllowNullsForAllTypes                boolean             null                                   Specifies whether null union types should be added for all types.
 
-csDefaultValuesForConstantsOnly        boolean             false                                  Whether to generate the property/field default values only for constants
+csDefaultValuesForConstantsOnly        boolean             false                                  Whether to generate the property/field default values only for constants.
 
 csNullableTranslation                  string              ""                                     Determines which strict-null-checking type unions will be added to C# nullable property types by default. Possible values: "null", "undefined", "optional", "null|undefined" or "".
 
-customTypeMappings                     Object              {}                                     Object containing a map of custom [C# to TypeScript] type mappings (example below)
+customTypeMappings                     Object              {}                                     Object containing a map of custom [C# to TypeScript] type mappings (example below).
 
-defaultValuesForTypes                  Object              {}                                     Object containing a map of default values for the specified TypeScript types (example below)
+defaultValuesForTypes                  Object              {}                                     Object containing a map of default values for the specified TypeScript types (example below).
 
-enumStringInitializers                 boolean             false                                  Whether to use TypeScript enum string initializers by default
+enumStringInitializers                 boolean             false                                  Whether to use TypeScript enum string initializers by default.
 
 enumStringInitializersConverters (*)   string[]            []                                     Converter chain used for converting C# enum value names to TypeScript enum string initializers. See the (*) explanation below regarding ways in which class names can be specified.
 
 enumValueNameConverters (*)            string[]            []                                     Converter chain used for converting C# enum value names to TypeScript enum value names. See the (*) explanation below regarding ways in which class names can be specified.
 
-explicitPublicAccessor                 boolean             false                                  Whether to use explicit *public* accessor in the generated TypeScript class files
+explicitPublicAccessor                 boolean             false                                  Whether to use explicit *public* accessor in the generated TypeScript class files.
 
 exportTypesAsInterfacesByDefault       boolean             false                                  Whether to export types as interfaces by default. For example affects member types which aren't explicitly selected to be generated.
 
@@ -114,23 +114,25 @@ generationSpecs (*)                    string[]            []                   
 
 outputPath                             string              ""                                     Output path for generated files, relative to the project folder.
 
-projectOutputFolder                    string              "bin"                                  The project's output folder
+projectOutputFolder                    string              "bin"                                  The project's output folder.
 
 propertyNameConverters (*)             string[]            ["PascalCaseToCamelCaseConverter"]     Converter chain used for converting C# property/field names to TypeScript property names. See the (*) explanation below regarding ways in which class names can be specified.
 
-singleQuotes                           boolean             false                                  Whether to use single quotes for string literals in the generated TypeScript files
+singleQuotes                           boolean             false                                  Whether to use single quotes for string literals in the generated TypeScript files.
 
-tabLength                              number              4                                      The number of spaces per tab in the generated TypeScript files
+tabLength                              number              4                                      The number of spaces per tab in the generated TypeScript files.
 
 typeNameConverters (*)                 string[]            []                                     Converter chain used for converting C# type names to TypeScript type names. See the (*) explanation below regarding ways in which class names can be specified.
 
-typeScriptFileExtension                string              "ts"                                   File extension for the generated TypeScript files
+typeScriptFileExtension                string              "ts"                                   File extension for the generated TypeScript files.
 
-typeUnionsForTypes                     Object              {}                                     Object containing a map of [TypeScript type -> type unions] mappings (example below)
+typeUnionsForTypes                     Object              {}                                     Object containing a map of [TypeScript type -> type unions] mappings (example below).
 
-useDefaultExport                       boolean             false                                  Whether to use TypeScript default exports by default
+useDefaultExport                       boolean             false                                  Whether to use TypeScript default exports by default.
 
-useTabCharacter                        boolean             false                                  Whether to use the tab character instead or multiple spaces
+useImportType                          boolean             false                                  Whether to use "import type" instead of "import" in the generated TypeScript sources.
+
+useTabCharacter                        boolean             false                                  Whether to use the tab character instead or multiple spaces.
 ====================================== =================== ====================================== ===================
 
 (*) The rules for specifying class names are as follows:
