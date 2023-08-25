@@ -122,11 +122,15 @@ singleQuotes                           boolean             false                
 
 tabLength                              number              4                                      The number of spaces per tab in the generated TypeScript files.
 
+typeBlacklist                          string[]            []                                     Types that should not be generated (specified by name or full name). Apart from the specified types, the following default types are also added to typeBlacklist: IAsyncDisposable, ICloneable, IComparable, IConvertible, IDisposable, IEquatable, IFormattable, IParsable, ISerializable, ISpanFormattable, ISpanParsable, ValueType (and their generic variants where applicable). Types can be removed from typeBlacklist by using typeWhitelist.
+
 typeNameConverters (*)                 string[]            []                                     Converter chain used for converting C# type names to TypeScript type names. See the (*) explanation below regarding ways in which class names can be specified.
 
 typeScriptFileExtension                string              "ts"                                   File extension for the generated TypeScript files.
 
 typeUnionsForTypes                     Object              {}                                     Object containing a map of [TypeScript type -> type unions] mappings (example below).
+
+typeWhitelist                          string[]            []                                     Removes types from typeBlacklist. Types can be specified by name or full name.
 
 useDefaultExport                       boolean             false                                  Whether to use TypeScript default exports by default.
 
