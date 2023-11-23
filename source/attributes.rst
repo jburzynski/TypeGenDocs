@@ -229,18 +229,6 @@ will be translated to:
 	    myProperty: string | null;
 	}
 
-If string initializers are enabled, the above opt-in example will produce the following TypeScript:
-
-.. code-block:: typescript
-
-	export enum MyEnum
-	{
-	    A = "A",
-	    B = "B"
-	}
-	
-To specify custom logic for changing (converting) a C# enum value name to an enum initializer string, you can specify enum string initializers converters in the CLI (*enumStringInitializersConverters* parameter) or in the generator options (*GeneratorOptions.EnumStringInitializersConverters*).
-
 TsOptionalAttribute
 ===================
 
@@ -362,6 +350,18 @@ Opt-out:
 	    A,
 	    B
 	}
+	
+If string initializers are enabled, the above opt-in example will produce the following TypeScript:
+
+.. code-block:: typescript
+
+	export enum MyEnum
+	{
+	    A = "A",
+	    B = "B"
+	}
+	
+To specify custom logic for changing (converting) a C# enum value name to an enum initializer string, you can specify enum string initializers converters in the CLI (*enumStringInitializersConverters* parameter) or in the generator options (*GeneratorOptions.EnumStringInitializersConverters*).
 
 TsTypeAttribute
 ===============
