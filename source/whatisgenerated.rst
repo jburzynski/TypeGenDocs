@@ -176,8 +176,8 @@ All collection or nested collection types will be exported by TypeGen. E.g., for
 	export class MyClass {
 	    intArray: number[];
 	    intEnumerable: number[];
-	    intEnumArrayCombo: int[][];
-	    intEnumListArrayCombo: int[][][];
+	    intEnumArrayCombo: number[][];
+	    intEnumListArrayCombo: number[][][];
 	}
 
 Base classes
