@@ -27,6 +27,7 @@ Contents:
    programmaticalapi
    converters
    otherfeatures
+   API Reference <https://apimundo.com/organizations/nuget-org/nuget-feeds/public/packages/TypeGen/versions/latest>
    troubleshooting
    legal
 
