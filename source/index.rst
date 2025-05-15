@@ -27,7 +27,6 @@ Contents:
    programmaticalapi
    converters
    otherfeatures
-   API Reference <https://www.fuget.org/packages/TypeGen>
    troubleshooting
    legal
 
